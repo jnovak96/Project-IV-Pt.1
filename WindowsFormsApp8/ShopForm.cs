@@ -440,13 +440,13 @@ namespace BookCDDVDShop
                             String typeOfProduct = dbResult[4].ToString();
 
                             //A switch statement can be created to enable the correct buttons etc. 
-                            switch (typeOfProduct)
+                            switch (typeOfProduct.ToLower())
                             {
-                                case ("Book"):
+                                case ("book"):
                                     //Create a Book Object and call the display method 
                                     break;
 
-                                case ("BookCIS"):
+                                case ("bookcis"):
                                     break;
                             }
 
