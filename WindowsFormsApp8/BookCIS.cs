@@ -16,7 +16,7 @@ namespace BookCDDVDShop
             hiddenArea = "";
         }
 
-        public BookCIS(int UPC, decimal price, string title, int quantity, string ISBN,
+        public BookCIS(int UPC, decimal price, string title, int quantity, int ISBN,
             string author, int pages) : base(UPC, price, title, quantity, ISBN, author, pages)
         {
             hiddenArea = "";

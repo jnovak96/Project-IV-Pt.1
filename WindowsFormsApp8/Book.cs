@@ -10,7 +10,7 @@ namespace BookCDDVDShop
 
     class Book : Product
     {
-        private string hiddenISBN;
+        private int hiddenISBN;
         private string hiddenAuthor;
         private int hiddenPages;
 
@@ -18,20 +18,20 @@ namespace BookCDDVDShop
         public Book()
         {
             hiddenAuthor = "";
-            hiddenISBN = "";
+            hiddenISBN = 0;
             hiddenPages = 0;
         }
 
         //parameterized constructor
-        public Book(int UPC, decimal price, string title, int quantity, string ISBN,
+        public Book(int UPC, decimal price, string title, int quantity, int ISBN,
             string author, int pages) : base(UPC, price, title, quantity)
         {
             hiddenAuthor = "";
-            hiddenISBN = "";
+            hiddenISBN = 0;
             hiddenPages = 0;
         }
 
-        public string BookISBN
+        public int BookISBN
         {
             get
             {
@@ -66,11 +66,13 @@ namespace BookCDDVDShop
                 hiddenPages = value;
             }
         }
+
+       
          public override void Save(frmBookCDDVDShop f)
         {
             base.Save(f);
             hiddenAuthor = f.txtBookAuthor.Text;
-            hiddenISBN = f.txtBookISBNLeft.Text + "-" + f.txtBookISBNRight.Text;
+            hiddenISBN = Convert.ToInt32(f.txtBookISBNLeft.Text +  f.txtBookISBNRight.Text);
             hiddenPages = Convert.ToInt32(f.txtBookPages.Text);
         } // end Save
 
@@ -80,8 +82,8 @@ namespace BookCDDVDShop
         {
             base.Display(f);
             f.txtBookAuthor.Text = hiddenAuthor;
-            f.txtBookISBNLeft.Text = hiddenISBN.Substring(0, 4);
-            f.txtBookISBNRight.Text = hiddenISBN.Substring(5, 4);
+            f.txtBookISBNLeft.Text = hiddenISBN.ToString(). Substring(0, 4);
+            f.txtBookISBNRight.Text = hiddenISBN.ToString().Substring(5, 4);
             f.txtBookPages.Text = hiddenPages.ToString();
         }  // end Display
 

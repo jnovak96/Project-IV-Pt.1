@@ -657,36 +657,36 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        public System.Windows.Forms.TextBox txtProductUPC;
-        public System.Windows.Forms.TextBox txtProductPrice;
-        public System.Windows.Forms.TextBox txtProductTitle;
-        public System.Windows.Forms.TextBox txtProductQuantity;
-        public System.Windows.Forms.TextBox txtBookPages;
-        public System.Windows.Forms.TextBox txtBookAuthor;
-        public System.Windows.Forms.TextBox txtBookISBNRight;
-        public System.Windows.Forms.TextBox txtBookISBNLeft;
-        public System.Windows.Forms.TextBox txtCDClassicalLabel;
-        public System.Windows.Forms.TextBox txtDVDRunTime;
-        public System.Windows.Forms.TextBox txtDVDReleaseDate;
-        public System.Windows.Forms.TextBox txtDVDLeadActor;
-        public System.Windows.Forms.TextBox txtCDOrchestraConductor;
-        public System.Windows.Forms.TextBox txtCDClassicalArtists;
+        internal System.Windows.Forms.Label label15;
+        internal System.Windows.Forms.Label label14;
+        internal System.Windows.Forms.Label label13;
+        internal System.Windows.Forms.Label label12;
+        internal System.Windows.Forms.Label label4;
+        internal System.Windows.Forms.Label label3;
+        internal System.Windows.Forms.Label label2;
+        internal System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label label7;
+        internal System.Windows.Forms.Label label6;
+        internal System.Windows.Forms.Label label5;
+        internal System.Windows.Forms.Label label8;
+        internal System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.Label label11;
+        internal System.Windows.Forms.Label label10;
+        internal System.Windows.Forms.Label label9;
+        internal System.Windows.Forms.TextBox txtProductUPC;
+        internal System.Windows.Forms.TextBox txtProductPrice;
+        internal System.Windows.Forms.TextBox txtProductTitle;
+        internal System.Windows.Forms.TextBox txtProductQuantity;
+        internal System.Windows.Forms.TextBox txtBookPages;
+        internal System.Windows.Forms.TextBox txtBookAuthor;
+        internal System.Windows.Forms.TextBox txtBookISBNRight;
+        internal System.Windows.Forms.TextBox txtBookISBNLeft;
+        internal System.Windows.Forms.TextBox txtCDClassicalLabel;
+        internal System.Windows.Forms.TextBox txtDVDRunTime;
+        internal System.Windows.Forms.TextBox txtDVDReleaseDate;
+        internal System.Windows.Forms.TextBox txtDVDLeadActor;
+        internal System.Windows.Forms.TextBox txtCDOrchestraConductor;
+        internal System.Windows.Forms.TextBox txtCDClassicalArtists;
         internal System.Windows.Forms.Button btnCreateBook;
         internal System.Windows.Forms.Button btnCreateBookCIS;
         internal System.Windows.Forms.Button btnCreateDVD;
@@ -708,10 +708,10 @@
         internal System.Windows.Forms.Button btnEnterUPC;
         internal System.Windows.Forms.Button btnExit;
         internal System.Windows.Forms.Button btnSaveEditUpdate;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
+        internal System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.Label label17;
+        internal System.Windows.Forms.Label label18;
+        internal System.Windows.Forms.Label label19;
     }
 }
 

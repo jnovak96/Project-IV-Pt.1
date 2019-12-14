@@ -53,6 +53,7 @@
     <Compile Include="CDOrchestral.cs" />
     <Compile Include="DVD.cs" />
     <Compile Include="formController.cs" />
+    <Compile Include="ProductDB.cs" />
     <Compile Include="ShopForm.cs">
       <SubType>Form</SubType>
     </Compile>

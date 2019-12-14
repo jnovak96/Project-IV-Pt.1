@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace BookCDDVDShop
 {
@@ -17,6 +18,7 @@ namespace BookCDDVDShop
         private int addState;
         private int mode;
         ProductList pList;
+        ProductDB productDB;
         public frmBookCDDVDShop()
         {
                InitializeComponent();
@@ -28,6 +30,7 @@ namespace BookCDDVDShop
             addState = -1;
             mode = 0;
             pList = new ProductList();
+            productDB = new ProductDB();
             //Check if the serializable file exists
             if (File.Exists("BookCDDVDShopData"))
             {
@@ -107,7 +110,12 @@ namespace BookCDDVDShop
                     Book newBook = new Book();
                     newBook.Save(this);
                     MessageBox.Show(newBook.ToString());
-                    pList.addProduct(newBook);
+
+                    //Adds to the database
+                    productDB.InsertProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
+                    productDB.InsertBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
+
+                    //pList.addProduct(newBook);
                     break;
                 case 1:
                     //Case is in: add a CIS Book
@@ -118,7 +126,12 @@ namespace BookCDDVDShop
                     }
                     BookCIS newBookCIS = new BookCIS();
                     newBookCIS.Save(this);
-                    pList.addProduct(newBookCIS);
+
+                    //Inserts a new CISBook into the database
+                    productDB.InsertProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name);
+                    productDB.InsertBook(newBookCIS.ProductUPC, newBookCIS.BookISBN, newBookCIS.BookAuthor, newBookCIS.BookPages);
+                    productDB.InsertBookCIS(newBookCIS.ProductUPC, newBookCIS.BookCISArea);
+                    //pList.addProduct(newBookCIS);
                     break;
                 case 2:
                     //Case is in: add a DVD
@@ -129,7 +142,11 @@ namespace BookCDDVDShop
                     }
                     DVD newDVD = new DVD();
                     newDVD.Save(this);
-                    pList.addProduct(newDVD);
+
+                    //Inserts a new DVD and Product information into Database
+                    productDB.InsertProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name);
+                    productDB.InsertDVD(newDVD.ProductUPC, newDVD.DVDActor, Convert.ToDateTime(newDVD.DVDReleaseDate), newDVD.DVDRunTime);
+                    //pList.addProduct(newDVD);
                     break;
                 case 3:
                     //Run checks and break on failure
@@ -140,7 +157,12 @@ namespace BookCDDVDShop
                     //Case is in: add a CD orchestra
                     CDOrchestral newCDOrchestral = new CDOrchestral();
                     newCDOrchestral.Save(this);
-                    pList.addProduct(newCDOrchestral);
+
+                    //Inserts a new classical and orcenstral entry into database
+                    productDB.InsertCDClassical(newCDOrchestral.ProductUPC, newCDOrchestral.CDClassicalLabel, newCDOrchestral.CDClassicalArtists);
+                    productDB.InsertCDOrchestra(newCDOrchestral.ProductUPC, newCDOrchestral.CDOrchestralConductor);
+
+                    //pList.addProduct(newCDOrchestral);
                     break;
                 case 4:
                     //Case is in: add a CD Chamber
@@ -151,7 +173,11 @@ namespace BookCDDVDShop
                     }
                     CDChamber newCDChamber = new CDChamber();
                     newCDChamber.Save(this);
-                    pList.addProduct(newCDChamber);
+
+                    //Inserts a new classical and chamber entry into database
+                    productDB.InsertCDClassical(newCDChamber.ProductUPC, newCDChamber.CDClassicalLabel, newCDChamber.CDClassicalArtists);
+                    productDB.InsertCDChamber(newCDChamber.ProductUPC, newCDChamber.CDChamberInstruments);
+                    //pList.addProduct(newCDChamber);
                     break;
             }
         }
@@ -357,7 +383,17 @@ namespace BookCDDVDShop
         {
             int UPCParsed;
             if (int.TryParse(txtProductUPC.Text, out UPCParsed))
-                pList.displayProduct(UPCParsed);
+            {
+
+                bool noMatches = false;
+                OleDbDataReader test = productDB.SelectProduct(UPCParsed, out noMatches);
+                while (test.Read())
+                {
+                    MessageBox.Show(test.GetValue(4).ToString(), "Stuff");
+                   
+                }
+            }
+            //pList.displayProduct(UPCParsed);
             else
             {
                 MessageBox.Show("Error! UPC must be a valid numeric value");
@@ -368,7 +404,14 @@ namespace BookCDDVDShop
             {
                 case 1:
                     //find mode
-                    pList.displayProduct(UPCParsed).Display(this);
+                    bool noMatches = false;
+                    OleDbDataReader test = productDB.SelectProduct(UPCParsed, out noMatches);
+                    while (test.Read())
+                    {
+                        MessageBox.Show(test.ToString(), "stuff");
+                        test.NextResult();
+                    }
+                    //pList.displayProduct(UPCParsed).Display(this);
                     break;
                 case 2:
                     //delete mode
