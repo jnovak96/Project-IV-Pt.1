@@ -325,7 +325,7 @@ namespace BookCDDVDShop
             }
 
             return myDataReader;
-        }  // end SelectProduct
+        }  // end SelectAllProduct
 
 
         //Updates The information for a product in the database
@@ -334,7 +334,7 @@ namespace BookCDDVDShop
             // CURRENTLY NOT USED
             string strUpdateProduct = "UPDATE PRODUCT "
                     + "SET " + "fldPrice=" + price + ", fldTitle='"+title + "'" + ", fldQuantity="+quantity           
-                    + "WHERE  fldUPC=" + UPC + ";";
+                    + " WHERE  fldUPC=" + UPC + ";";
 
             OleDbConnection myConnection = new OleDbConnection(strConnection);
             OleDbCommand myCommand = new OleDbCommand(strUpdateProduct, myConnection);
@@ -357,7 +357,200 @@ namespace BookCDDVDShop
             }
 
             //return myDataReader;
-        }  // end SelectProduct
+        }  // end UpdateProduct
+
+
+        // Updates record in the Book table with parameters UPC and ISBN, Author, Pages
+        public bool UpdateBook(int UPC, int ISBN, string author, int pages)
+        {
+            string strUpdateBook = "UPDATE Book SET fldISBN=" + ISBN + ", fldAuthor='" + author + "'" +", fldPages=" + pages +
+                " WHERE fldUPC=" + UPC + ";";
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateBook, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                myDataReader.Close();
+                return true; // returns true if Insert was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update Book error: " + ex.Message,
+                     "Book Update Failed", MessageBoxButtons.OK);
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+        }  // end UpdateBook
+
+
+        //Updates a BookCIS within the database based off UPC
+        public bool UpdateBookCIS(int UPC, string CISArea)
+        {
+            string strUpdateBookCIS = "UPDATE BookCIS SET fldCISArea='" + CISArea + "'"
+                + " WHERE fldUPC=" + UPC + ";";
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateBookCIS, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                myDataReader.Close();
+                return true; // returns true if Insert was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update BookCIS error: " + ex.Message,
+                    "BookCIS Update Failed", MessageBoxButtons.OK);
+                return false; // returns false if Insert was unsuccessful
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+        }  // end UpdateBookCIS
+
+
+
+
+        // Updates a record in the DVD table with parameters UPC and Lead Actor, Release Date and Run Time
+        public bool UpdateDVD(int UPC, string lead, DateTime relDate, int runTime)
+        {
+            string strUpdateDVD = "UPDATE DVD SET "
+                + "fldLeadActor='" + lead +"'" + ", fldReleaseDate=" + "'"+ relDate +"'" + ", fldRunTime=" + runTime +
+                " WHERE fldUPC=" + UPC + ";";
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateDVD, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                myDataReader.Close();
+                return true; // returns true if Insert was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update DVD error: " + ex.Message,
+                   "DVD Update Failed", MessageBoxButtons.OK);
+                return false; // returns false if Insert was unsuccessful
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+        }  // end UpdateDVD
+
+
+        // Updates a record in CDClassical table with parameters ProductUPC and 
+        //     CDClassical Label and CDClassical Artists
+        public bool UpdateCDClassical(int UPC, string label, string artists)
+        {
+            string strUpdateCDClassical = "Update CDCLASSICAL SET "
+                + "fldLabel='" + label +"'" + ", fldArtists='" + artists +"'" +
+                " WHERE fldUPC=" + UPC + ";";
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateCDClassical, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                myDataReader.Close();
+                return true; // returns true if Insert was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update CDCLassical error: " + ex.Message,
+                    "CDClassical Update Failed", MessageBoxButtons.OK);
+                return false; // returns false if Insert was unsuccessful
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+        }  // end UpdateCDClassical
+
+
+        //Updates a record in CD Chamber Music table with parameters ProductUPC and InstrumentList
+        public bool UpdateCDChamber(int UPC, string instrumentList)
+        {
+            string strUpdateCDChamber = "UPDATE CDChamber SET fldInstrumentList='" + instrumentList + "'" +
+                " WHERE fldUPC=" + UPC + ";";
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateCDChamber, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                myDataReader.Close();
+                return true; // returns true if Insert was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update CDChamber error: " + ex.Message,
+                    "CDChamber Update Failed", MessageBoxButtons.OK);
+                return false; // returns false if Insert was unsuccessful
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+        }  // end UpdateCDChamber
+
+
+        // Updates a record in CDOrchestra table with parameters ProductUPC and Conductor
+        public bool UpdateCDOrchestra(int UPC, string Conductor)
+        {
+            string strUpdateCDOrchestra = "UPDATE CDOrchestra SET fldConductor='" + Conductor + "'" +
+                " WHERE fldUPC=" + UPC + ";";
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateCDOrchestra, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                myDataReader.Close();
+                return true; // returns true if Insert was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update CDOrchestra error: " + ex.Message,
+                     "CDOrchestral Update Failed", MessageBoxButtons.OK);
+                return false; // returns false if Insert was unsuccessful
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }  // end UpdateCDOrchestra
+
+
+
+
+
+
 
 
 
