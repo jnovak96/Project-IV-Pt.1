@@ -424,6 +424,7 @@ namespace BookCDDVDShop
 
                     OKFlag = false;
                  
+                    //dbResult contains the result from the SQL query to database
                     dbResult = productDB.SelectProduct(UPCParsed, out OKFlag);
                     
                     if (OKFlag)
@@ -433,9 +434,25 @@ namespace BookCDDVDShop
                             DBProduct tmp = new DBProduct(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]),
                             dbResult[2].ToString(), Convert.ToInt32(dbResult[3]));
                             tmp.Display(this);
+
+
+                            //Object that holds the type of Product
+                            String typeOfProduct = dbResult[4].ToString();
+
+                            //A switch statement can be created to enable the correct buttons etc. 
+                            switch (typeOfProduct)
+                            {
+                                case ("Book"):
+                                    //Create a Book Object and call the display method 
+                                    break;
+
+                                case ("BookCIS"):
+                                    break;
+                            }
+
+
                         }
-                       // pList.addProduct(type(test.GetData(0), test.GetData(1), test.GetData(2), test.GetData(4)));
-                      //  Product(test.GetData(0), test.GetData(1), test.GetData(2), test.GetData(4));
+                      
                     }
 
                    // pList.displayProduct(UPCParsed).Display(this);

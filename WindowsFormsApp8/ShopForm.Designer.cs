@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCreateBook = new System.Windows.Forms.Button();
             this.btnCreateBookCIS = new System.Windows.Forms.Button();
             this.btnCreateDVD = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.grpCDChamber = new System.Windows.Forms.GroupBox();
+            this.txtCDChamberInstrumentList = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grpCDOrchestra = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,6 +66,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.grpBookCIS = new System.Windows.Forms.GroupBox();
+            this.txtBookCISArea = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.grpBook = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -74,8 +77,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
-            this.txtCDChamberInstrumentList = new System.Windows.Forms.TextBox();
-            this.txtBookCISArea = new System.Windows.Forms.TextBox();
             this.btnEnterUPC = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSaveEditUpdate = new System.Windows.Forms.Button();
@@ -83,6 +84,22 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.toolTipUPC = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipPrice = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipTitle = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipQuantity = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipRunTime = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipReleaseDate = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipLeadActor = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipFind = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDelete = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipEdit = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipISBN = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipCISArea = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipConductor = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipAuthor = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipPages = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipInstram = new System.Windows.Forms.ToolTip(this.components);
             this.grpProduct.SuspendLayout();
             this.grpCDChamber.SuspendLayout();
             this.grpCDOrchestra.SuspendLayout();
@@ -148,6 +165,7 @@
             this.txtProductUPC.Name = "txtProductUPC";
             this.txtProductUPC.Size = new System.Drawing.Size(100, 20);
             this.txtProductUPC.TabIndex = 6;
+            this.toolTipUPC.SetToolTip(this.txtProductUPC, "The UPC Number is used to track Products!");
             // 
             // txtProductPrice
             // 
@@ -155,6 +173,7 @@
             this.txtProductPrice.Name = "txtProductPrice";
             this.txtProductPrice.Size = new System.Drawing.Size(100, 20);
             this.txtProductPrice.TabIndex = 7;
+            this.toolTipPrice.SetToolTip(this.txtProductPrice, "The cost of a single unit!");
             // 
             // txtProductTitle
             // 
@@ -162,6 +181,7 @@
             this.txtProductTitle.Name = "txtProductTitle";
             this.txtProductTitle.Size = new System.Drawing.Size(100, 20);
             this.txtProductTitle.TabIndex = 8;
+            this.toolTipTitle.SetToolTip(this.txtProductTitle, "What is the product called?");
             // 
             // txtProductQuantity
             // 
@@ -169,6 +189,7 @@
             this.txtProductQuantity.Name = "txtProductQuantity";
             this.txtProductQuantity.Size = new System.Drawing.Size(51, 20);
             this.txtProductQuantity.TabIndex = 9;
+            this.toolTipQuantity.SetToolTip(this.txtProductQuantity, "How many units are there?");
             // 
             // txtBookPages
             // 
@@ -176,6 +197,7 @@
             this.txtBookPages.Name = "txtBookPages";
             this.txtBookPages.Size = new System.Drawing.Size(100, 20);
             this.txtBookPages.TabIndex = 13;
+            this.toolTipPages.SetToolTip(this.txtBookPages, "How many pages are in this darn book?");
             // 
             // txtBookAuthor
             // 
@@ -183,6 +205,7 @@
             this.txtBookAuthor.Name = "txtBookAuthor";
             this.txtBookAuthor.Size = new System.Drawing.Size(131, 20);
             this.txtBookAuthor.TabIndex = 12;
+            this.toolTipAuthor.SetToolTip(this.txtBookAuthor, "Who wrote the darn thing?");
             // 
             // txtBookISBNRight
             // 
@@ -211,6 +234,7 @@
             this.txtDVDRunTime.Name = "txtDVDRunTime";
             this.txtDVDRunTime.Size = new System.Drawing.Size(100, 20);
             this.txtDVDRunTime.TabIndex = 16;
+            this.toolTipRunTime.SetToolTip(this.txtDVDRunTime, "How long is the movie for?");
             // 
             // txtDVDReleaseDate
             // 
@@ -218,6 +242,7 @@
             this.txtDVDReleaseDate.Name = "txtDVDReleaseDate";
             this.txtDVDReleaseDate.Size = new System.Drawing.Size(100, 20);
             this.txtDVDReleaseDate.TabIndex = 15;
+            this.toolTipReleaseDate.SetToolTip(this.txtDVDReleaseDate, "When was this DVD released?");
             // 
             // txtDVDLeadActor
             // 
@@ -225,6 +250,7 @@
             this.txtDVDLeadActor.Name = "txtDVDLeadActor";
             this.txtDVDLeadActor.Size = new System.Drawing.Size(100, 20);
             this.txtDVDLeadActor.TabIndex = 14;
+            this.toolTipLeadActor.SetToolTip(this.txtDVDLeadActor, "Who is the lead actor? Can\'t be Friedman!");
             // 
             // txtCDOrchestraConductor
             // 
@@ -232,6 +258,7 @@
             this.txtCDOrchestraConductor.Name = "txtCDOrchestraConductor";
             this.txtCDOrchestraConductor.Size = new System.Drawing.Size(100, 20);
             this.txtCDOrchestraConductor.TabIndex = 19;
+            this.toolTipConductor.SetToolTip(this.txtCDOrchestraConductor, "Who Orcastrated the darn thing?");
             // 
             // txtCDClassicalArtists
             // 
@@ -309,6 +336,14 @@
             this.grpCDChamber.TabIndex = 27;
             this.grpCDChamber.TabStop = false;
             this.grpCDChamber.Text = "CD Chamber";
+            // 
+            // txtCDChamberInstrumentList
+            // 
+            this.txtCDChamberInstrumentList.Location = new System.Drawing.Point(97, 22);
+            this.txtCDChamberInstrumentList.Name = "txtCDChamberInstrumentList";
+            this.txtCDChamberInstrumentList.Size = new System.Drawing.Size(132, 20);
+            this.txtCDChamberInstrumentList.TabIndex = 30;
+            this.toolTipInstram.SetToolTip(this.txtCDChamberInstrumentList, "What metal or wood object made this?");
             // 
             // label4
             // 
@@ -423,6 +458,14 @@
             this.grpBookCIS.TabStop = false;
             this.grpBookCIS.Text = "CIS Book";
             // 
+            // txtBookCISArea
+            // 
+            this.txtBookCISArea.Location = new System.Drawing.Point(77, 19);
+            this.txtBookCISArea.Name = "txtBookCISArea";
+            this.txtBookCISArea.Size = new System.Drawing.Size(117, 20);
+            this.txtBookCISArea.TabIndex = 31;
+            this.toolTipCISArea.SetToolTip(this.txtBookCISArea, "Area of concentration of the Book!");
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -485,6 +528,7 @@
             this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 14;
             this.label9.Text = "ISBN";
+            this.toolTipISBN.SetToolTip(this.label9, "The Book ISBN must be 8 digits long (4 & 4) !");
             // 
             // btnClear
             // 
@@ -503,6 +547,7 @@
             this.btnDelete.Size = new System.Drawing.Size(118, 23);
             this.btnDelete.TabIndex = 24;
             this.btnDelete.Text = "DELETE";
+            this.toolTipDelete.SetToolTip(this.btnDelete, "Click here to delete a product by UPC!");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -513,6 +558,7 @@
             this.btnEdit.Size = new System.Drawing.Size(118, 23);
             this.btnEdit.TabIndex = 25;
             this.btnEdit.Text = "EDIT";
+            this.toolTipEdit.SetToolTip(this.btnEdit, "Click here to edit an existing Product by UPC!");
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -523,22 +569,9 @@
             this.btnFind.Size = new System.Drawing.Size(118, 23);
             this.btnFind.TabIndex = 26;
             this.btnFind.Text = "FIND";
+            this.toolTipFind.SetToolTip(this.btnFind, "Click here to find a product by UPC!");
             this.btnFind.UseVisualStyleBackColor = true;
             this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
-            // 
-            // txtCDChamberInstrumentList
-            // 
-            this.txtCDChamberInstrumentList.Location = new System.Drawing.Point(97, 22);
-            this.txtCDChamberInstrumentList.Name = "txtCDChamberInstrumentList";
-            this.txtCDChamberInstrumentList.Size = new System.Drawing.Size(132, 20);
-            this.txtCDChamberInstrumentList.TabIndex = 30;
-            // 
-            // txtBookCISArea
-            // 
-            this.txtBookCISArea.Location = new System.Drawing.Point(77, 19);
-            this.txtBookCISArea.Name = "txtBookCISArea";
-            this.txtBookCISArea.Size = new System.Drawing.Size(117, 20);
-            this.txtBookCISArea.TabIndex = 31;
             // 
             // btnEnterUPC
             // 
@@ -558,7 +591,7 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(118, 23);
             this.btnExit.TabIndex = 28;
-            this.btnExit.Text = "Save and Exit";
+            this.btnExit.Text = "Exit Application";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -611,6 +644,135 @@
             this.label19.Size = new System.Drawing.Size(123, 16);
             this.label19.TabIndex = 33;
             this.label19.Text = "Clear the Screen";
+            // 
+            // toolTipUPC
+            // 
+            this.toolTipUPC.AutomaticDelay = 10;
+            this.toolTipUPC.AutoPopDelay = 2000;
+            this.toolTipUPC.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.toolTipUPC.InitialDelay = 10;
+            this.toolTipUPC.ReshowDelay = 2;
+            this.toolTipUPC.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipPrice
+            // 
+            this.toolTipPrice.AutomaticDelay = 10;
+            this.toolTipPrice.AutoPopDelay = 2000;
+            this.toolTipPrice.InitialDelay = 10;
+            this.toolTipPrice.ReshowDelay = 2;
+            this.toolTipPrice.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipTitle
+            // 
+            this.toolTipTitle.AutomaticDelay = 10;
+            this.toolTipTitle.AutoPopDelay = 2000;
+            this.toolTipTitle.InitialDelay = 10;
+            this.toolTipTitle.ReshowDelay = 2;
+            this.toolTipTitle.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipQuantity
+            // 
+            this.toolTipQuantity.AutomaticDelay = 10;
+            this.toolTipQuantity.AutoPopDelay = 2000;
+            this.toolTipQuantity.InitialDelay = 10;
+            this.toolTipQuantity.ReshowDelay = 2;
+            this.toolTipQuantity.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipRunTime
+            // 
+            this.toolTipRunTime.AutomaticDelay = 10;
+            this.toolTipRunTime.AutoPopDelay = 2000;
+            this.toolTipRunTime.InitialDelay = 10;
+            this.toolTipRunTime.ReshowDelay = 2;
+            this.toolTipRunTime.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipReleaseDate
+            // 
+            this.toolTipReleaseDate.AutomaticDelay = 10;
+            this.toolTipReleaseDate.AutoPopDelay = 2000;
+            this.toolTipReleaseDate.InitialDelay = 10;
+            this.toolTipReleaseDate.ReshowDelay = 2;
+            this.toolTipReleaseDate.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipLeadActor
+            // 
+            this.toolTipLeadActor.AutomaticDelay = 10;
+            this.toolTipLeadActor.AutoPopDelay = 2000;
+            this.toolTipLeadActor.InitialDelay = 10;
+            this.toolTipLeadActor.ReshowDelay = 2;
+            this.toolTipLeadActor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipFind
+            // 
+            this.toolTipFind.AutomaticDelay = 10;
+            this.toolTipFind.AutoPopDelay = 2000;
+            this.toolTipFind.InitialDelay = 10;
+            this.toolTipFind.ReshowDelay = 2;
+            this.toolTipFind.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipDelete
+            // 
+            this.toolTipDelete.AutomaticDelay = 10;
+            this.toolTipDelete.AutoPopDelay = 2000;
+            this.toolTipDelete.InitialDelay = 10;
+            this.toolTipDelete.ReshowDelay = 2;
+            this.toolTipDelete.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipEdit
+            // 
+            this.toolTipEdit.AutomaticDelay = 100;
+            this.toolTipEdit.AutoPopDelay = 2000;
+            this.toolTipEdit.InitialDelay = 100;
+            this.toolTipEdit.ReshowDelay = 20;
+            this.toolTipEdit.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipISBN
+            // 
+            this.toolTipISBN.AutomaticDelay = 10;
+            this.toolTipISBN.AutoPopDelay = 2000;
+            this.toolTipISBN.InitialDelay = 10;
+            this.toolTipISBN.ReshowDelay = 2;
+            this.toolTipISBN.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipCISArea
+            // 
+            this.toolTipCISArea.AutomaticDelay = 10;
+            this.toolTipCISArea.AutoPopDelay = 2000;
+            this.toolTipCISArea.InitialDelay = 10;
+            this.toolTipCISArea.ReshowDelay = 2;
+            this.toolTipCISArea.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipConductor
+            // 
+            this.toolTipConductor.AutomaticDelay = 10;
+            this.toolTipConductor.AutoPopDelay = 2000;
+            this.toolTipConductor.InitialDelay = 10;
+            this.toolTipConductor.ReshowDelay = 2;
+            this.toolTipConductor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipAuthor
+            // 
+            this.toolTipAuthor.AutomaticDelay = 10;
+            this.toolTipAuthor.AutoPopDelay = 2000;
+            this.toolTipAuthor.InitialDelay = 10;
+            this.toolTipAuthor.ReshowDelay = 2;
+            this.toolTipAuthor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipPages
+            // 
+            this.toolTipPages.AutomaticDelay = 10;
+            this.toolTipPages.AutoPopDelay = 2000;
+            this.toolTipPages.InitialDelay = 10;
+            this.toolTipPages.ReshowDelay = 2;
+            this.toolTipPages.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // toolTipInstram
+            // 
+            this.toolTipInstram.AutomaticDelay = 10;
+            this.toolTipInstram.AutoPopDelay = 2000;
+            this.toolTipInstram.InitialDelay = 10;
+            this.toolTipInstram.ReshowDelay = 2;
+            this.toolTipInstram.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
             // frmBookCDDVDShop
             // 
@@ -712,6 +874,22 @@
         internal System.Windows.Forms.Label label17;
         internal System.Windows.Forms.Label label18;
         internal System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ToolTip toolTipUPC;
+        private System.Windows.Forms.ToolTip toolTipPrice;
+        private System.Windows.Forms.ToolTip toolTipTitle;
+        private System.Windows.Forms.ToolTip toolTipQuantity;
+        private System.Windows.Forms.ToolTip toolTipRunTime;
+        private System.Windows.Forms.ToolTip toolTipReleaseDate;
+        private System.Windows.Forms.ToolTip toolTipLeadActor;
+        private System.Windows.Forms.ToolTip toolTipISBN;
+        private System.Windows.Forms.ToolTip toolTipDelete;
+        private System.Windows.Forms.ToolTip toolTipEdit;
+        private System.Windows.Forms.ToolTip toolTipFind;
+        private System.Windows.Forms.ToolTip toolTipConductor;
+        private System.Windows.Forms.ToolTip toolTipCISArea;
+        private System.Windows.Forms.ToolTip toolTipPages;
+        private System.Windows.Forms.ToolTip toolTipAuthor;
+        private System.Windows.Forms.ToolTip toolTipInstram;
     }
 }
 
