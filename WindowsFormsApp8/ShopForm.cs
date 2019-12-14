@@ -90,7 +90,7 @@ namespace BookCDDVDShop
         //Exit and save to serializable file
         private void btnExit_Click(object sender, EventArgs e)
         {
-            SFManager.writeToFile(pList, "BookCDDVDShopData");
+            //SFManager.writeToFile(pList, "BookCDDVDShopData");
             this.Close();
         }
 
@@ -389,7 +389,7 @@ namespace BookCDDVDShop
                 OleDbDataReader test = productDB.SelectProduct(UPCParsed, out noMatches);
                 while (test.Read())
                 {
-                    MessageBox.Show(test.GetValue(4).ToString(), "Stuff");
+                    MessageBox.Show(test.GetValue(4).ToString());
                    
                 }
             }
@@ -404,30 +404,73 @@ namespace BookCDDVDShop
             {
                 case 1:
                     //find mode
-                    bool noMatches = false;
-                    OleDbDataReader test = productDB.SelectProduct(UPCParsed, out noMatches);
-                    while (test.Read())
+                    bool OKFlag = false;
+                    OleDbDataReader dbResult = productDB.SelectProduct(UPCParsed, out OKFlag);
+                    while (dbResult.Read())
                     {
-                        MessageBox.Show(test.ToString(), "stuff");
-                        test.NextResult();
+                        MessageBox.Show("UPC : " + dbResult[0] + " , " + "Price : " + dbResult[1] + ", " + "Title : " + dbResult[2] + ", " + "Quantity : " + dbResult[3]);
                     }
                     //pList.displayProduct(UPCParsed).Display(this);
                     break;
                 case 2:
                     //delete mode
-                    pList.removeProduct(UPCParsed);
+
+                    productDB.Delete(UPCParsed);
+                   // pList.removeProduct(UPCParsed);
                     break;
                 case 3:
                     //edit mode
-                    pList.displayProduct(UPCParsed).Display(this);
+
+
+                    OKFlag = false;
+                 
+                    dbResult = productDB.SelectProduct(UPCParsed, out OKFlag);
+                    
+                    if (OKFlag)
+                    {
+                        while (dbResult.Read())
+                        {
+                            DBProduct tmp = new DBProduct(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]),
+                            dbResult[2].ToString(), Convert.ToInt32(dbResult[3]));
+                            tmp.Display(this);
+                        }
+                       // pList.addProduct(type(test.GetData(0), test.GetData(1), test.GetData(2), test.GetData(4)));
+                      //  Product(test.GetData(0), test.GetData(1), test.GetData(2), test.GetData(4));
+                    }
+
+                   // pList.displayProduct(UPCParsed).Display(this);
                     break;
 
             }
         }
 
+        //Prints out a product list from the database
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(pList.ToString());
+            bool OKFlag = false;
+
+            //Gets the results from a database
+            OleDbDataReader results = productDB.SelectAllProduct( out OKFlag);
+            if (OKFlag)
+            {
+                List<String> resultList = new List<string>();
+                System.Collections.IEnumerator ienum = results.GetEnumerator();
+                String s = "";         
+                while (results.Read())
+                {               
+                    s += "UPC : " +  results[0] + " , " + "Price : " + results[1] + ", " + "Title : "  + results[2] + ", " + "Quantity : " + results[3];
+                    resultList.Add(s);
+                    s = "";
+                }
+
+                var message = string.Join(Environment.NewLine, resultList.ToArray());
+                MessageBox.Show(message);
+            }
+            else
+            {
+                MessageBox.Show("There are no items in the Database!");
+            }
+          
         }
     }    
 }

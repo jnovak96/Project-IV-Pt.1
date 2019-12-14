@@ -274,7 +274,7 @@ namespace BookCDDVDShop
         public OleDbDataReader SelectProduct(int ProductUPC, out bool OKFlag)
         {
             // CURRENTLY NOT USED
-            string strSelectProduct = "SELECT * FROM Product WHERE product.fldUPC= " + ProductUPC;
+            string strSelectProduct = "SELECT * FROM Product WHERE product.fldUPC= " + ProductUPC ;
 
             OleDbConnection myConnection = new OleDbConnection(strConnection);
             OleDbCommand myCommand = new OleDbCommand(strSelectProduct, myConnection);
@@ -298,6 +298,122 @@ namespace BookCDDVDShop
 
             return myDataReader;
         }  // end SelectProduct
+
+        public OleDbDataReader SelectAllProduct( out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectProduct = "SELECT * FROM Product";
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectProduct, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select Product error: " + ex.Message,
+                     "Product Select ALL Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }  // end SelectProduct
+
+
+        //Updates The information for a product in the database
+        public void UpdateProduct(int UPC, decimal price, string title, int quantity, string productType, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strUpdateProduct = "UPDATE PRODUCT "
+                    + "SET " + "fldPrice=" + price + ", fldTitle='"+title + "'" + ", fldQuantity="+quantity           
+                    + "WHERE  fldUPC=" + UPC + ";";
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strUpdateProduct, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Update Product error: " + ex.Message,
+                     "Product Update Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            //return myDataReader;
+        }  // end SelectProduct
+
+
+
+
+        // ********** DELETE Method ********** 
+        // Deletes records all tables that have a matching ProductUPC 
+
+        // Uses strConnection to open a connection with the database
+        // Deletes Product with given ID from every table in the database
+        // If a Product with the given ID is not in a table, the Delete command does nothing
+        // Code written by Christopher Tither and Frank Branigan, CIS 3309 Section 1, April 2017
+        // Updated by Frank Friedman June 2019
+        public void Delete(int UPC)
+        {
+            using (OleDbConnection connection = new OleDbConnection(strConnection))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (OleDbCommand command1 = new OleDbCommand("DELETE FROM Product WHERE fldUPC = " + UPC, connection))
+                    {
+                        OleDbDataReader reader = command1.ExecuteReader();
+                    }
+                    using (OleDbCommand command2 = new OleDbCommand("DELETE FROM Book WHERE fldUPC = " + UPC, connection))
+                    {
+                        OleDbDataReader reader = command2.ExecuteReader();
+                    }
+                    using (OleDbCommand command3 = new OleDbCommand("DELETE FROM BookCIS WHERE fldUPC = " + UPC, connection))
+                    {
+                        OleDbDataReader reader = command3.ExecuteReader();
+                    }
+                    using (OleDbCommand command4 = new OleDbCommand("DELETE FROM DVD WHERE fldUPC = " + UPC, connection))
+                    {
+                        OleDbDataReader reader = command4.ExecuteReader();
+                    }
+                    using (OleDbCommand command5 = new OleDbCommand("DELETE FROM CDClassical WHERE fldUPC = " + UPC, connection))
+                    {
+                        OleDbDataReader reader = command5.ExecuteReader();
+                    }
+                    using (OleDbCommand command6 = new OleDbCommand("DELETE FROM CDChamber WHERE fldUPC = " + UPC, connection))
+                    {
+                        OleDbDataReader reader = command6.ExecuteReader();
+                    }
+                    connection.Close();
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show("There was a Delete Database Entry error: " + ex.Message,
+                        "Delete Database Entry Failed", MessageBoxButtons.OK);
+                    connection.Close();
+                }
+            }  // end using block
+            // FormController.clear(this);
+        }  // end Delete
+
 
 
     } // end of Product class
