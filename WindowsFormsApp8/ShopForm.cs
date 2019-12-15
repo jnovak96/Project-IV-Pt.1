@@ -446,33 +446,41 @@ namespace BookCDDVDShop
                         {
                             case ("book"):
                                 //Create a Book Object and call the display 
-                                FormController.deactivateAllButBook(this);
-                                OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
-                                Book newBook = new Book();
-                                while (dbBook.Read())
                                 {
-                                    newBook = new Book(tmp.ProductUPC, tmp.ProductPrice,tmp.ProductTitle, tmp.ProductQuantity, 
-                                        Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]));
+                                    FormController.deactivateAllButBook(this);
+                                    OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                    Book newBook = new Book();
+                                    while (dbBook.Read())
+                                    {
+                                        newBook = new Book(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
+                                            Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]));
+                                    }
+                                    newBook.Display(this);
                                 }
-                                newBook.Display(this);
                                 break;
                             case ("bookcis"):
-                                FormController.deactivateAllButBookCIS(this);
-                                    dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
-                                OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
-                                
-                                BookCIS newBookCIS = new BookCIS(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
-                                    Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]), dbBookCIS[1].ToString());
-                                newBookCIS.Display(this);
+                                {
+                                    Book newBook = new Book();
+                                    FormController.deactivateAllButBookCIS(this);
+                                    OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                    while (dbBook.Read())
+                                    {
+                                        newBook = new Book(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
+                                            Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]));
+                                    }
+
+                                    OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
+                                    BookCIS newBookCIS = new BookCIS();
+                                    while (dbBookCIS.Read())
+                                    {
+                                        newBookCIS = new BookCIS(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
+                                            newBook.BookISBN, newBook.BookAuthor, newBook.BookPages, dbBookCIS[1].ToString());
+                                        newBookCIS.Display(this);
+                                    }
+                                }
                                 break;
                             case ("dvd"):
                                 FormController.deactivateAllButDVD(this);
-                                OleDbDataReader dbDVD = productDB.SelectDVD(UPCParsed, out OKFlag);
-                                DVD newDVD = new DVD();
-                                while (dbDVD.Read())
-                                {
-                                    newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString(), dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
-                                }
                                 break;
                             case ("cdorchestra"):
                                 FormController.deactivateAllButCDOrchestra(this);
