@@ -422,7 +422,7 @@ namespace BookCDDVDShop
             string strSelectCDChamber = "SELECT * FROM CDChamber WHERE CDChamber.fldUPC= " + UPC;
 
             OleDbConnection myConnection = new OleDbConnection(strConnection);
-            OleDbCommand myCommand = new OleDbCommand(strSelectCDClassical, myConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectCDChamber, myConnection);
             OleDbDataReader myDataReader;
 
             try
@@ -434,7 +434,7 @@ namespace BookCDDVDShop
             }
             catch (OleDbException ex)
             {
-                MessageBox.Show("There was an Select CDClassical error: " + ex.Message,
+                MessageBox.Show("There was an Select CDChamber error: " + ex.Message,
                      "CDChamber Select Failed", MessageBoxButtons.OK);
                 myConnection.Close();
                 OKFlag = false; // returns false if Select was unsuccessful
@@ -448,10 +448,10 @@ namespace BookCDDVDShop
         public OleDbDataReader SelectCDOrchestra(int UPC, out bool OKFlag)
         {
             // CURRENTLY NOT USED
-            string strSelectCDChamber = "SELECT * FROM CDOrchestra WHERE CDOrchestra.fldUPC= " + UPC;
+            string strSelectCDOrchestra = "SELECT * FROM CDOrchestra WHERE CDOrchestra.fldUPC= " + UPC;
 
             OleDbConnection myConnection = new OleDbConnection(strConnection);
-            OleDbCommand myCommand = new OleDbCommand(strSelectCDClassical, myConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectCDOrchestra, myConnection);
             OleDbDataReader myDataReader;
 
             try
