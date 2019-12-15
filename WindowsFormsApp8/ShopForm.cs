@@ -427,60 +427,65 @@ namespace BookCDDVDShop
                     
                     if (OKFlag)
                     {
+                        DBProduct tmp = new DBProduct();
+                        String typeOfProduct = "";
                         while (dbResult.Read())
                         {
-                            DBProduct tmp = new DBProduct(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]),
+                            tmp = new DBProduct(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]),
                             dbResult[2].ToString(), Convert.ToInt32(dbResult[3]));
                             tmp.Display(this);
 
-
                             //Object that holds the type of Product
-                            String typeOfProduct = dbResult[4].ToString();
-
-                            //A switch statement can be created to enable the correct buttons etc. 
-                            switch (typeOfProduct.ToLower())
-                            {
-                                case ("book"):
-                                    //Create a Book Object and call the display 
-                                    FormController.deactivateAllButBook(this);
-                                    OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
-                                    Book newBook;
-                                    while (dbBook.Read())
-                                    {
-                                        newBook = new Book(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
-                                            Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]));
-                                    }
-                                    newBook.Display(this);
-                                    break;
-                                case ("bookcis"):
-                                    FormController.deactivateAllButBookCIS(this);
-                                     dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
-                                    OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
-                                    BookCIS newBookCIS = new BookCIS(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
-                                        Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]), dbBookCIS[1].ToString());
-                                    newBookCIS.Display(this);
-                                    break;
-                                case ("dvd"):
-                                    FormController.deactivateAllButDVD(this);
-                                    break;
-                                case ("cdorchestra"):
-                                    FormController.deactivateAllButCDOrchestra(this);
-                                    break;
-                                case ("cdchamber"):
-                                    FormController.deactivateAllButCDChamber(this);
-                                    break;
-                            }
-
+                            typeOfProduct = dbResult[4].ToString();
 
                         }
                       
-                    }
 
-                   // pList.displayProduct(UPCParsed).Display(this);
+                        //A switch statement can be created to enable the correct buttons etc. 
+                        switch (typeOfProduct.ToLower())
+                        {
+                            case ("book"):
+                                //Create a Book Object and call the display 
+                                FormController.deactivateAllButBook(this);
+                                OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                Book newBook = new Book();
+                                while (dbBook.Read())
+                                {
+                                    newBook = new Book(tmp.ProductUPC, tmp.ProductPrice,tmp.ProductTitle, tmp.ProductQuantity, 
+                                        Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]));
+                                }
+                                newBook.Display(this);
+                                break;
+                            case ("bookcis"):
+                                FormController.deactivateAllButBookCIS(this);
+                                    dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
+                                BookCIS newBookCIS = new BookCIS(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
+                                    Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]), dbBookCIS[1].ToString());
+                                newBookCIS.Display(this);
+                                break;
+                            case ("dvd"):
+                                FormController.deactivateAllButDVD(this);
+                                break;
+                            case ("cdorchestra"):
+                                FormController.deactivateAllButCDOrchestra(this);
+                                break;
+                            case ("cdchamber"):
+                                FormController.deactivateAllButCDChamber(this);
+                                break;
+                        }
+
+
+                    }
                     break;
 
             }
+
+                   // pList.displayProduct(UPCParsed).Display(this);
+                   
+
         }
+   
 
         //Prints out a product list from the database
         private void button1_Click(object sender, EventArgs e)

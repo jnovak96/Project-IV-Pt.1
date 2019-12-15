@@ -26,9 +26,9 @@ namespace BookCDDVDShop
         public Book(int UPC, decimal price, string title, int quantity, int ISBN,
             string author, int pages) : base(UPC, price, title, quantity)
         {
-            hiddenAuthor = "";
-            hiddenISBN = 0;
-            hiddenPages = 0;
+            hiddenAuthor = author;
+            hiddenISBN = ISBN;
+            hiddenPages = pages;
         }
 
         public int BookISBN
@@ -82,8 +82,8 @@ namespace BookCDDVDShop
         {
             base.Display(f);
             f.txtBookAuthor.Text = hiddenAuthor;
-            f.txtBookISBNLeft.Text = hiddenISBN.ToString(). Substring(0, 4);
-            f.txtBookISBNRight.Text = hiddenISBN.ToString().Substring(5, 4);
+            f.txtBookISBNLeft.Text = hiddenISBN.ToString().Substring(0, 4);
+            f.txtBookISBNRight.Text = hiddenISBN.ToString().Substring(4, 4);
             f.txtBookPages.Text = hiddenPages.ToString();
         }  // end Display
 

@@ -302,7 +302,7 @@ namespace BookCDDVDShop
         public OleDbDataReader SelectBook(int BookUPC, out bool OKFlag)
         {
             // CURRENTLY NOT USED
-            string strSelectBook = "SELECT * FROM Book WHERE book.fldUPC= " + BookUPC;
+            string strSelectBook = "SELECT * FROM Book WHERE Book.fldUPC=" + BookUPC;
 
             OleDbConnection myConnection = new OleDbConnection(strConnection);
             OleDbCommand myCommand = new OleDbCommand(strSelectBook, myConnection);
