@@ -481,9 +481,18 @@ namespace BookCDDVDShop
                                 break;
                             case ("dvd"):
                                 FormController.deactivateAllButDVD(this);
+                                FormController.deactivateAllButDVD(this);
+                                OleDbDataReader dbDVD = productDB.SelectDVD(UPCParsed, out OKFlag);
+                                DVD newDVD = new DVD();
+                                while (dbDVD.Read())
+                                {
+                                    newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString(), dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
+                                }
+                                newDVD.Display(this);
                                 break;
                             case ("cdorchestra"):
                                 FormController.deactivateAllButCDOrchestra(this);
+
                                 break;
                             case ("cdchamber"):
                                 FormController.deactivateAllButCDChamber(this);
@@ -497,7 +506,7 @@ namespace BookCDDVDShop
             }
 
                    // pList.displayProduct(UPCParsed).Display(this);
-                   
+                   //
 
         }
    

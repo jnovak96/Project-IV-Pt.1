@@ -413,8 +413,65 @@ namespace BookCDDVDShop
             }
 
             return myDataReader;
-        }  // end SelectDVD
+        }  // end SelectCDClassical
 
+        //Returns the result from the CDChamber table that matches the UPC number
+        public OleDbDataReader SelectCDChamber(int UPC, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectCDChamber = "SELECT * FROM CDChamber WHERE CDChamber.fldUPC= " + UPC;
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectCDClassical, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select CDClassical error: " + ex.Message,
+                     "CDChamber Select Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }   //End SelectCDChamber
+
+        //Returns the result from the CDOrchestra table that matches the UPC number
+        public OleDbDataReader SelectCDOrchestra(int UPC, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectCDChamber = "SELECT * FROM CDOrchestra WHERE CDOrchestra.fldUPC= " + UPC;
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectCDClassical, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select CDOrchestra error: " + ex.Message,
+                     "CDOrchestra Select Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }   //End SelectCDOrchestra
 
         public OleDbDataReader SelectAllProduct( out bool OKFlag)
         {
