@@ -494,7 +494,7 @@ namespace BookCDDVDShop
                                 OleDbDataReader dbDVD = productDB.SelectDVD(UPCParsed, out OKFlag);
                                 while (dbDVD.Read())
                                 {
-                                    newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString(), dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
+                                    newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString().Split(' ')[0], dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
                                 }
                                 newDVD.Display(this);
                                 updateState = 2;
