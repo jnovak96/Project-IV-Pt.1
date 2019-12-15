@@ -15,6 +15,7 @@ namespace BookCDDVDShop
 {
     public partial class frmBookCDDVDShop : Form
     {
+        private int updateState;
         private int addState;
         private int mode;
         ProductList pList;
