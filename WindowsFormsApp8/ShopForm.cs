@@ -514,7 +514,7 @@ namespace BookCDDVDShop
 
                             case ("cdchamber"):
                                 CDClassical newCDClassical = new CDClassical();
-                                FormController.deactivateAllButCDOrchestra(this);
+                                FormController.deactivateAllButCDChamber(this);
                                 OleDbDataReader dbCDClassical = productDB.SelectCDClassical(UPCParsed, OKFlag);
                                 while (dbCDClassical.Read())
                                 {
@@ -526,7 +526,7 @@ namespace BookCDDVDShop
                                 CDChamber newCDChamber = new CDChamber();
                                 while (dbCDChamber.Read())
                                 {
-                                   newCDChamber = new CDOrchestral(newCDClassical.ProductUPC, newCDClassical.ProductPrice, newCDClassical.ProductTitle, 
+                                   newCDChamber = new CDChamber(newCDClassical.ProductUPC, newCDClassical.ProductPrice, newCDClassical.ProductTitle, 
                                        newCDClassical.CDClassicalLabel, newCDClassical.CDClassicalArtists, dbCDChamber[1].ToString());
                                 }
                                 newCDChamber.Display(this);
