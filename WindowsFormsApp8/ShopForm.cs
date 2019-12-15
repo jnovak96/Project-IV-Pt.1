@@ -606,8 +606,8 @@ namespace BookCDDVDShop
                     MessageBox.Show(newBook.ToString());
 
                     //Adds to the database
-                    productDB.InsertProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
-                    productDB.InsertBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
+                    productDB.UpdateProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
+                    productDB.UpdateBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
 
                     //pList.addProduct(newBook);
                     break;
@@ -622,9 +622,9 @@ namespace BookCDDVDShop
                     newBookCIS.Save(this);
 
                     //Inserts a new CISBook into the database
-                    productDB.InsertProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name);
-                    productDB.InsertBook(newBookCIS.ProductUPC, newBookCIS.BookISBN, newBookCIS.BookAuthor, newBookCIS.BookPages);
-                    productDB.InsertBookCIS(newBookCIS.ProductUPC, newBookCIS.BookCISArea);
+                    productDB.UpdateProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name);
+                    productDB.UpdateBook(newBookCIS.ProductUPC, newBookCIS.BookISBN, newBookCIS.BookAuthor, newBookCIS.BookPages);
+                    productDB.UpdateBookCIS(newBookCIS.ProductUPC, newBookCIS.BookCISArea);
                     //pList.addProduct(newBookCIS);
                     break;
                 case 2:
@@ -638,8 +638,8 @@ namespace BookCDDVDShop
                     newDVD.Save(this);
 
                     //Inserts a new DVD and Product information into Database
-                    productDB.InsertProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name);
-                    productDB.InsertDVD(newDVD.ProductUPC, newDVD.DVDActor, Convert.ToDateTime(newDVD.DVDReleaseDate), newDVD.DVDRunTime);
+                    productDB.UpdateProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name);
+                    productDB.UpdateDVD(newDVD.ProductUPC, newDVD.DVDActor, Convert.ToDateTime(newDVD.DVDReleaseDate), newDVD.DVDRunTime);
                     //pList.addProduct(newDVD);
                     break;
                 case 3:
@@ -674,7 +674,6 @@ namespace BookCDDVDShop
                     //pList.addProduct(newCDChamber);
                     break;
             }
-        }
         }
     }    
 }
