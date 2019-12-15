@@ -440,22 +440,22 @@ namespace BookCDDVDShop
                             String typeOfProduct = dbResult[4].ToString();
 
                             //A switch statement can be created to enable the correct buttons etc. 
-                            switch (typeOfProduct)
+                            switch (typeOfProduct.ToLower())
                             {
-                                case ("Book"):
+                                case ("book"):
                                     //Create a Book Object and call the display method
                                     FormController.deactivateAllButBook(this);
                                     break;
-                                case ("BookCIS"):
+                                case ("bookcis"):
                                     FormController.deactivateAllButBookCIS(this);
                                     break;
-                                case ("DVD"):
+                                case ("dvd"):
                                     FormController.deactivateAllButDVD(this);
                                     break;
-                                case ("CDOrchestra"):
+                                case ("cdorchestra"):
                                     FormController.deactivateAllButCDOrchestra(this);
                                     break;
-                                case ("CDChamber"):
+                                case ("cdchamber"):
                                     FormController.deactivateAllButCDChamber(this);
                                     break;
                                 
