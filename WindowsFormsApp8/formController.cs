@@ -147,7 +147,7 @@ namespace BookCDDVDShop
         {
             f.btnSaveProduct.Enabled = false;
             f.btnUpdateProduct.Enabled = true;
-
+            f.btnEnterUPC.Enabled = false;
         }
 
 
