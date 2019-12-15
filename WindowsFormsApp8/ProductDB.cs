@@ -330,7 +330,7 @@ namespace BookCDDVDShop
         }  // end SelectBook
 
 
-        //Returns the result from the BookCIS table that matches the UPC
+        //Returns the result from the BookCIS table that matches the UPC number
         public OleDbDataReader SelectBookCIS(int UPC, out bool OKFlag)
         {
             // CURRENTLY NOT USED
