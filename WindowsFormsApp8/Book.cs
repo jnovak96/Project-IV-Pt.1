@@ -27,7 +27,7 @@ namespace BookCDDVDShop
             string author, int pages) : base(UPC, price, title, quantity)
         {
             hiddenAuthor = author;
-            hiddenISBN = ISBN;
+            hiddenISBN = checkISBN(ISBN);
             hiddenPages = pages;
         }
 
@@ -67,7 +67,27 @@ namespace BookCDDVDShop
             }
         }
 
-       
+        //Returns a 8 length ISBN
+        private int checkISBN(int isbn)
+        {
+            string num = isbn.ToString();
+            if(num.Length == 8)
+            {
+                return isbn;
+            }
+            else
+            {
+                int length = num.Length;
+                while(length < 8)
+                {
+                    num += '0';
+                    length++;
+                }
+
+                return Convert.ToInt32(num);
+            }
+        }
+
          public override void Save(frmBookCDDVDShop f)
         {
             base.Save(f);
