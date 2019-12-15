@@ -104,7 +104,7 @@ namespace BookCDDVDShop
                 case 0:
                     //Case is in: add a Book
                     //Run checks and break on failure
-                    if (!productTextCheck() || !bookTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.ookTextCheck())
                     {
                         MessageBox.Show("One of the fields was not entered in a usable form. Please try again!");
                         break;
@@ -121,7 +121,7 @@ namespace BookCDDVDShop
                 case 1:
                     //Case is in: add a CIS Book
                     //Run checks and break on failure
-                    if (!productTextCheck() || !bookCISTextCheck() || !bookTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.bookCISTextCheck() || !newVal.bookTextCheck())
                     {
                         break;
                     }
@@ -139,7 +139,7 @@ namespace BookCDDVDShop
                 case 2:
                     //Case is in: add a DVD
                     //Run checks and break on failure
-                    if (!productTextCheck() || !DVDTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.DVDTextCheck())
                     {
                         break;
                     }
@@ -155,7 +155,7 @@ namespace BookCDDVDShop
                     break;
                 case 3:
                     //Run checks and break on failure
-                    if (!productTextCheck() || !CDClassicalTextCheck() || !CDOrchestralTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.CDClassicalTextCheck() || !newVal.CDOrchestralTextCheck())
                     {
                         break;
                     }
@@ -175,7 +175,7 @@ namespace BookCDDVDShop
                 case 4:
                     //Case is in: add a CD Chamber
                     //Run checks and break on failure
-                    if (!productTextCheck()|| !CDClassicalTextCheck() || !CDChamberTextCheck())
+                    if (!newVal.productTextCheck()|| !newVal.CDClassicalTextCheck() || !newVal.CDChamberTextCheck())
                     {
                         break;
                     }
@@ -489,6 +489,7 @@ namespace BookCDDVDShop
                                     FormController.deactivateAllButBookCIS(this);
                                     FormController.enableUpdateProduct(this);
                                     OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                    //while reading the book from database
                                     while (dbBook.Read())
                                     {
                                         newBook = new Book(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
@@ -497,6 +498,7 @@ namespace BookCDDVDShop
 
                                     OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
                                     BookCIS newBookCIS = new BookCIS();
+                                    //while 
                                     while (dbBookCIS.Read())
                                     {
                                         newBookCIS = new BookCIS(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
@@ -615,13 +617,14 @@ namespace BookCDDVDShop
 
         private void btnUpdateProduct_Click(object sender, EventArgs e)
         {
+            Validation newVal = Validation(this);
             bool OKFlag = true;
             switch(updateState)
             {
                 case 0:
                     //Case is in: add a Book
                     //Run checks and break on failure
-                    if (!productTextCheck() || !bookTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.bookTextCheck())
                     {
                         MessageBox.Show("One of the fields was not entered in a usable form. Please try again!");
                         break;
@@ -639,7 +642,7 @@ namespace BookCDDVDShop
                 case 1:
                     //Case is in: add a CIS Book
                     //Run checks and break on failure
-                    if (!productTextCheck() || !bookCISTextCheck() || !bookTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.bookCISTextCheck() || !newVal.bookTextCheck())
                     {
                         break;
                     }
@@ -656,7 +659,7 @@ namespace BookCDDVDShop
                 case 2:
                     //Case is in: add a DVD
                     //Run checks and break on failure
-                    if (!productTextCheck() || !DVDTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.DVDTextCheck())
                     {
                         break;
                     }
@@ -671,7 +674,7 @@ namespace BookCDDVDShop
                     break;
                 case 3:
                     //Run checks and break on failure
-                    if (!productTextCheck() || !CDClassicalTextCheck() || !CDOrchestralTextCheck())
+                    if (!newVal.productTextCheck() || !newVal.CDClassicalTextCheck() || !newVal.CDOrchestralTextCheck())
                     {
                         break;
                     }
@@ -690,7 +693,7 @@ namespace BookCDDVDShop
                 case 4:
                     //Case is in: add a CD Chamber
                     //Run checks and break on failure
-                    if (!productTextCheck()|| !CDClassicalTextCheck() || !CDChamberTextCheck())
+                    if (!newVal.productTextCheck()|| !newVal.CDClassicalTextCheck() || !newVal.CDChamberTextCheck())
                     {
                         break;
                     }
