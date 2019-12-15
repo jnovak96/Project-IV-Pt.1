@@ -19,11 +19,11 @@ namespace BookCDDVDShop
             hiddenRunTime = 0;
         }
 
-        public DVD(int UPC, decimal price, string title, int quantity, DateTime releaseDate, string hiddenActor, int runTime) : base(UPC, price, title, quantity)
+        public DVD(int UPC, decimal price, string title, int quantity, string releaseDate, string actor, int runTime) : base(UPC, price, title, quantity)
         {
-            hiddenActor = "";
-            hiddenRelease = "";
-            hiddenRunTime = 0;
+            hiddenActor = actor;
+            hiddenRelease = releaseDate;
+            hiddenRunTime = runTime;
         }
 
         public string DVDActor

@@ -25,8 +25,8 @@ namespace BookCDDVDShop
         public CDClassical(int UPC, decimal price, string title, int quantity,
             string label, string artists) : base(UPC, price, title, quantity)
         {
-            hiddenLabel = "";
-            hiddenArtists = "";
+            hiddenLabel = label;
+            hiddenArtists = artists;
         }  // end Employee Parameterized Constructor
 
 

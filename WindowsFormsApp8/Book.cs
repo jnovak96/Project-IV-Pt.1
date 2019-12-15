@@ -26,9 +26,9 @@ namespace BookCDDVDShop
         public Book(int UPC, decimal price, string title, int quantity, int ISBN,
             string author, int pages) : base(UPC, price, title, quantity)
         {
-            hiddenAuthor = "";
-            hiddenISBN = 0;
-            hiddenPages = 0;
+            hiddenAuthor = author;
+            hiddenISBN = ISBN;
+            hiddenPages = pages;
         }
 
         public int BookISBN

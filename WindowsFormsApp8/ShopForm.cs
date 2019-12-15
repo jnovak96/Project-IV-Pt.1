@@ -456,7 +456,7 @@ namespace BookCDDVDShop
                                     FormController.deactivateAllButBookCIS(this);
                                     OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
                                     OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
-                                    while (dbBookCIS.Read())
+                                    while (dbBookCIS.Read() && dbBook.Read())
                                     {
                                         BookCIS newBookCIS = new BookCIS(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
                                             Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]), dbBookCIS[1].ToString());
@@ -466,9 +466,14 @@ namespace BookCDDVDShop
                                 case ("dvd"):
                                     FormController.deactivateAllButDVD(this);
                                     OleDbDataReader dbDVD = productDB.SelectDVD(UPCParsed, out OKFlag);
+                                    while(dbDVD.Read())
+                                    {
+
+                                    }
                                     break;
                                 case ("cdorchestra"):
                                     FormController.deactivateAllButCDOrchestra(this);
+                                    //OleDbDataReader dbOrchestra = 
                                     break;
                                 case ("cdchamber"):
                                     FormController.deactivateAllButCDChamber(this);
