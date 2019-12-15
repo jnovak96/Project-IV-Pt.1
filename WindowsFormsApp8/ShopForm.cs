@@ -236,7 +236,7 @@ namespace BookCDDVDShop
                 return false;
             }
             //Check for numeric accuracy (negatives, proper number of digits)
-            else if (PageParsed < 1 || ISBNLeftParsed < 1000 || ISBNLeftParsed > 9999 || ISBNRightParsed < 1000 || ISBNRightParsed > 9999) 
+            else if (PageParsed < 1 || ISBNLeftParsed.ToString().Length != 4 || ISBNRightParsed.ToString().Length != 4) 
             {
                 MessageBox.Show("Error! Please do not use negative numbers for page count, and use 4-digit numbers for each part of ISBN");
                 return false;
