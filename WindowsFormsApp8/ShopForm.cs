@@ -654,7 +654,7 @@ namespace BookCDDVDShop
                     newCDOrchestral.Save(this);
 
                     //Inserts a new classical and orcenstral entry into database
-                    productDB.UpdateProduct(newCDOrchestral.ProductUPC, newCDOrchestral.ProductPrice, newCDOrchestral.ProductTitle, newCDOrchestral.ProductQuantity, out OKFlag);
+                    productDB.UpdateProduct(newCDOrchestral.ProductUPC, newCDOrchestral.ProductPrice, newCDOrchestral.ProductTitle, newCDOrchestral.ProductQuantity, newCDOrchestral.GetType().Name, out OKFlag);
                     productDB.InsertCDClassical(newCDOrchestral.ProductUPC, newCDOrchestral.CDClassicalLabel, newCDOrchestral.CDClassicalArtists);
                     productDB.InsertCDOrchestra(newCDOrchestral.ProductUPC, newCDOrchestral.CDOrchestralConductor);
 
@@ -671,7 +671,7 @@ namespace BookCDDVDShop
                     newCDChamber.Save(this);
 
                     //Inserts a new classical and chamber entry into database
-                    productDB.UpdateProduct(newCDChamber.ProductUPC, newCDChamber.ProductPrice, newCDChamber.ProductTitle, newCDChamber.ProductQuantity, out OKFlag);
+                    productDB.UpdateProduct(newCDChamber.ProductUPC, newCDChamber.ProductPrice, newCDChamber.ProductTitle, newCDChamber.ProductQuantity, newCDChamber.GetType().Name, out OKFlag);
                     productDB.InsertCDClassical(newCDChamber.ProductUPC, newCDChamber.CDClassicalLabel, newCDChamber.CDClassicalArtists);
                     productDB.InsertCDChamber(newCDChamber.ProductUPC, newCDChamber.CDChamberInstruments);
                     //pList.addProduct(newCDChamber);
