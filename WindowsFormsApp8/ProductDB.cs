@@ -357,7 +357,66 @@ namespace BookCDDVDShop
             }
 
             return myDataReader;
-        }  // end SelectBook
+        }  // end SelectBookCIS
+
+        //Returns the result from the DVD table that matches the UPC number
+        public OleDbDataReader SelectDVD(int UPC, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectDVD = "SELECT * FROM DVD WHERE DVD.fldUPC= " + UPC;
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectDVD, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select DVD error: " + ex.Message,
+                     "DVD Select Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }  // end SelectDVD
+
+        //Returns the result from the CDClassical table that matches the UPC number
+        public OleDbDataReader SelectCDClassical(int UPC, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectCDClassical = "SELECT * FROM CDClassical WHERE CDClassical.fldUPC= " + UPC;
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectCDClassical, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select CDClassical error: " + ex.Message,
+                     "CDClassical Select Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }  // end SelectDVD
+
 
         public OleDbDataReader SelectAllProduct( out bool OKFlag)
         {
