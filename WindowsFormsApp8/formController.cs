@@ -28,7 +28,8 @@ namespace BookCDDVDShop
             f.btnEdit.Enabled = true;
             f.btnFind.Enabled = true;
             f.btnExit.Enabled = true;
-            f.btnSaveEditUpdate.Enabled = true;
+            f.btnUpdateProduct.Enabled = false;
+            f.btnSaveProduct.Enabled = true;
             f.btnEnterUPC.Enabled = true;
             f.btnCreateBook.Enabled = true;
             f.btnCreateBook.Text = "Create Book";
@@ -84,6 +85,7 @@ namespace BookCDDVDShop
         // Deactivate all but Book
         public static void deactivateAllButBook(frmBookCDDVDShop f)
         {
+            FormController.activateBook(f);
             FormController.deactivateCDOrchestra(f);
             FormController.deactivateBookCIS(f);
             FormController.deactivateCDChamber(f);
@@ -95,6 +97,7 @@ namespace BookCDDVDShop
         // Deactivate all but BookCIS
         public static void deactivateAllButBookCIS(frmBookCDDVDShop f)
         {
+            FormController.activateBookCIS(f);
             FormController.deactivateBook(f);
             FormController.deactivateCDOrchestra(f);
             FormController.deactivateCDChamber(f);
@@ -107,6 +110,7 @@ namespace BookCDDVDShop
         // Deactivtae all but DVD
         public static void deactivateAllButDVD(frmBookCDDVDShop f)
         {
+            FormController.activateDVD(f);
             FormController.deactivateBook(f);
             FormController.deactivateBookCIS(f);
             FormController.deactivateCDChamber(f);
@@ -118,6 +122,7 @@ namespace BookCDDVDShop
         // Deactivate all but CDOrchestra
         public static void deactivateAllButCDOrchestra(frmBookCDDVDShop f)
         {
+            FormController.activateCDOrchestra(f);
             FormController.deactivateBook(f);
             FormController.deactivateBookCIS(f);
             FormController.deactivateCDChamber(f);
@@ -129,6 +134,7 @@ namespace BookCDDVDShop
         // Deactivate all but CDChamber
         public static void deactivateAllButCDChamber(frmBookCDDVDShop f)
         {
+            FormController.activateCDChamber(f);
             FormController.deactivateBook(f);
             FormController.deactivateBookCIS(f);
             FormController.deactivateCDOrchestra(f);
@@ -137,6 +143,12 @@ namespace BookCDDVDShop
         }  // end deactivateAllButCDOrchestra
 
 
+        public static void enableUpdateProduct(frmBookCDDVDShop f)
+        {
+            f.btnSaveProduct.Enabled = false;
+            f.btnUpdateProduct.Enabled = true;
+
+        }
 
 
         // Activates and deactivates necessary form buttons

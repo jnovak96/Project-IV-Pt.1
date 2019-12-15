@@ -79,7 +79,7 @@
             this.btnFind = new System.Windows.Forms.Button();
             this.btnEnterUPC = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnSaveEditUpdate = new System.Windows.Forms.Button();
+            this.btnSaveProduct = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -100,6 +100,7 @@
             this.toolTipAuthor = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipPages = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipInstram = new System.Windows.Forms.ToolTip(this.components);
+            this.btnUpdateProduct = new System.Windows.Forms.Button();
             this.grpProduct.SuspendLayout();
             this.grpCDChamber.SuspendLayout();
             this.grpCDOrchestra.SuspendLayout();
@@ -595,15 +596,15 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnSaveEditUpdate
+            // btnSaveProduct
             // 
-            this.btnSaveEditUpdate.Location = new System.Drawing.Point(648, 302);
-            this.btnSaveEditUpdate.Name = "btnSaveEditUpdate";
-            this.btnSaveEditUpdate.Size = new System.Drawing.Size(118, 23);
-            this.btnSaveEditUpdate.TabIndex = 29;
-            this.btnSaveEditUpdate.Text = "Save Product";
-            this.btnSaveEditUpdate.UseVisualStyleBackColor = true;
-            this.btnSaveEditUpdate.Click += new System.EventHandler(this.btnSaveEditUpdate_Click);
+            this.btnSaveProduct.Location = new System.Drawing.Point(648, 302);
+            this.btnSaveProduct.Name = "btnSaveProduct";
+            this.btnSaveProduct.Size = new System.Drawing.Size(118, 23);
+            this.btnSaveProduct.TabIndex = 29;
+            this.btnSaveProduct.Text = "Save Product";
+            this.btnSaveProduct.UseVisualStyleBackColor = true;
+            this.btnSaveProduct.Click += new System.EventHandler(this.btnSaveEditUpdate_Click);
             // 
             // button1
             // 
@@ -774,16 +775,26 @@
             this.toolTipInstram.ReshowDelay = 2;
             this.toolTipInstram.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // btnUpdateProduct
+            // 
+            this.btnUpdateProduct.Location = new System.Drawing.Point(648, 241);
+            this.btnUpdateProduct.Name = "btnUpdateProduct";
+            this.btnUpdateProduct.Size = new System.Drawing.Size(118, 23);
+            this.btnUpdateProduct.TabIndex = 34;
+            this.btnUpdateProduct.Text = "Update Product";
+            this.btnUpdateProduct.UseVisualStyleBackColor = true;
+            // 
             // frmBookCDDVDShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 498);
+            this.Controls.Add(this.btnUpdateProduct);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnSaveEditUpdate);
+            this.Controls.Add(this.btnSaveProduct);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnEnterUPC);
             this.Controls.Add(this.btnFind);
@@ -869,7 +880,7 @@
         internal System.Windows.Forms.TextBox txtBookCISArea;
         internal System.Windows.Forms.Button btnEnterUPC;
         internal System.Windows.Forms.Button btnExit;
-        internal System.Windows.Forms.Button btnSaveEditUpdate;
+        internal System.Windows.Forms.Button btnSaveProduct;
         internal System.Windows.Forms.Button button1;
         internal System.Windows.Forms.Label label17;
         internal System.Windows.Forms.Label label18;
@@ -890,6 +901,7 @@
         private System.Windows.Forms.ToolTip toolTipPages;
         private System.Windows.Forms.ToolTip toolTipAuthor;
         private System.Windows.Forms.ToolTip toolTipInstram;
+        internal System.Windows.Forms.Button btnUpdateProduct;
     }
 }
 
