@@ -15,10 +15,9 @@ namespace BookCDDVDShop
 {
     public partial class frmBookCDDVDShop : Form
     {
+        private int updateState;
         private int addState;
         private int mode;
-        //state used for update
-        private int updateState;        
         ProductList pList;
         ProductDB productDB;
         public frmBookCDDVDShop()
@@ -30,7 +29,6 @@ namespace BookCDDVDShop
         {
             //initiate state monitoring integers
             addState = -1;
-            UpdateState = -1;
             mode = 0;
             pList = new ProductList();
             productDB = new ProductDB();
@@ -219,7 +217,7 @@ namespace BookCDDVDShop
             return true;
         }
 
-        //VALIDATION CHECKS FOR ALL CATEGORIES 
+        //VALIDATION CHECKS FOR ALL CATEGORIES
 
         //Check for Book
         private bool bookTextCheck()
@@ -462,9 +460,7 @@ namespace BookCDDVDShop
                                     }
                                     newBook.Display(this);
                                 }
-
-                                //Update
-
+                                updateState = 0;
                                 break;
 
                             case ("bookcis"):
@@ -488,6 +484,7 @@ namespace BookCDDVDShop
                                         newBookCIS.Display(this);
                                     }
                                 }
+                                updateState = 1;
                                 break;
 
                             case ("dvd"):
@@ -500,9 +497,7 @@ namespace BookCDDVDShop
                                     newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString(), dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
                                 }
                                 newDVD.Display(this);
-
-                                //Update
-
+                                updateState = 2;
                                 break;
                            
                             case ("cdorchestra"):
@@ -526,6 +521,7 @@ namespace BookCDDVDShop
                                     }
                                     newCDOrchestra.Display(this);
                                 }
+                                updateState = 3;
                                 break;
 
                             case ("cdchamber"):
@@ -549,6 +545,7 @@ namespace BookCDDVDShop
                                     }
                                     newCDChamber.Display(this);
                                 }
+                                updateState = 4;
                                 break;
                         }
                         
@@ -594,89 +591,7 @@ namespace BookCDDVDShop
 
         private void btnUpdateProduct_Click(object sender, EventArgs e)
         {
-        switch(updateState)
-            {
-                case 0:
-                    //Case is in: add a Book
-                    //Run checks and break on failure
-                    if (!productTextCheck() || !bookTextCheck())
-                    {
-                        MessageBox.Show("One of the fields was not entered in a usable form. Please try again!");
-                        break;
-                    }
-                    Book newBook = new Book();
-                    newBook.Save(this);
-                    MessageBox.Show(newBook.ToString());
 
-                    //Adds to the database
-                    productDB.InsertProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
-                    productDB.InsertBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
-
-                    //pList.addProduct(newBook);
-                    break;
-                case 1:
-                    //Case is in: add a CIS Book
-                    //Run checks and break on failure
-                    if (!productTextCheck() || !bookCISTextCheck() || !bookTextCheck())
-                    {
-                        break;
-                    }
-                    BookCIS newBookCIS = new BookCIS();
-                    newBookCIS.Save(this);
-
-                    //Inserts a new CISBook into the database
-                    productDB.InsertProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name);
-                    productDB.InsertBook(newBookCIS.ProductUPC, newBookCIS.BookISBN, newBookCIS.BookAuthor, newBookCIS.BookPages);
-                    productDB.InsertBookCIS(newBookCIS.ProductUPC, newBookCIS.BookCISArea);
-                    //pList.addProduct(newBookCIS);
-                    break;
-                case 2:
-                    //Case is in: add a DVD
-                    //Run checks and break on failure
-                    if (!productTextCheck() || !DVDTextCheck())
-                    {
-                        break;
-                    }
-                    DVD newDVD = new DVD();
-                    newDVD.Save(this);
-
-                    //Inserts a new DVD and Product information into Database
-                    productDB.InsertProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name);
-                    productDB.InsertDVD(newDVD.ProductUPC, newDVD.DVDActor, Convert.ToDateTime(newDVD.DVDReleaseDate), newDVD.DVDRunTime);
-                    //pList.addProduct(newDVD);
-                    break;
-                case 3:
-                    //Run checks and break on failure
-                    if (!productTextCheck() || !CDClassicalTextCheck() || !CDOrchestralTextCheck())
-                    {
-                        break;
-                    }
-                    //Case is in: add a CD orchestra
-                    CDOrchestral newCDOrchestral = new CDOrchestral();
-                    newCDOrchestral.Save(this);
-
-                    //Inserts a new classical and orcenstral entry into database
-                    productDB.InsertCDClassical(newCDOrchestral.ProductUPC, newCDOrchestral.CDClassicalLabel, newCDOrchestral.CDClassicalArtists);
-                    productDB.InsertCDOrchestra(newCDOrchestral.ProductUPC, newCDOrchestral.CDOrchestralConductor);
-
-                    //pList.addProduct(newCDOrchestral);
-                    break;
-                case 4:
-                    //Case is in: add a CD Chamber
-                    //Run checks and break on failure
-                    if (!productTextCheck()|| !CDClassicalTextCheck() || !CDChamberTextCheck())
-                    {
-                        break;
-                    }
-                    CDChamber newCDChamber = new CDChamber();
-                    newCDChamber.Save(this);
-
-                    //Inserts a new classical and chamber entry into database
-                    productDB.InsertCDClassical(newCDChamber.ProductUPC, newCDChamber.CDClassicalLabel, newCDChamber.CDClassicalArtists);
-                    productDB.InsertCDChamber(newCDChamber.ProductUPC, newCDChamber.CDChamberInstruments);
-                    //pList.addProduct(newCDChamber);
-                    break;
-            }        
         }
     }    
 }
