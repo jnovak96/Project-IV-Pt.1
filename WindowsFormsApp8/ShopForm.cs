@@ -459,6 +459,7 @@ namespace BookCDDVDShop
                                     }
                                     newBook.Display(this);
                                 }
+                                updateState = 0;
                                 break;
 
                             case ("bookcis"):
@@ -482,6 +483,7 @@ namespace BookCDDVDShop
                                         newBookCIS.Display(this);
                                     }
                                 }
+                                updateState = 1;
                                 break;
 
                             case ("dvd"):
@@ -494,6 +496,7 @@ namespace BookCDDVDShop
                                     newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString(), dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
                                 }
                                 newDVD.Display(this);
+                                updateState = 0;
                                 break;
                            
                             case ("cdorchestra"):
