@@ -443,11 +443,23 @@ namespace BookCDDVDShop
                             switch (typeOfProduct.ToLower())
                             {
                                 case ("book"):
-                                    //Create a Book Object and call the display method 
+                                    //Create a Book Object and call the display method
+                                    FormController.deactivateAllButBook(this);
                                     break;
-
                                 case ("bookcis"):
+                                    FormController.deactivateAllButBookCIS(this);
                                     break;
+                                case ("dvd"):
+                                    FormController.deactivateAllButDVD(this);
+                                    break;
+                                case ("cdorchestra"):
+                                    FormController.deactivateAllButCDOrchestra(this);
+                                    break;
+                                case ("cdchamber"):
+                                    FormController.deactivateAllButCDChamber(this);
+                                    break;
+                                
+"
                             }
 
 
