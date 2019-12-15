@@ -417,7 +417,12 @@ namespace BookCDDVDShop
                 case 2:
                     //delete mode
 
-                    productDB.Delete(UPCParsed);
+                    productDB.Delete(UPCParsed, out OKFlag);
+                    if (OKFlag)
+                    {
+
+                        MessageBox.Show("No Entries Exist with that UPC!");
+                    }
                    // pList.removeProduct(UPCParsed);
                     break;
                 case 3:

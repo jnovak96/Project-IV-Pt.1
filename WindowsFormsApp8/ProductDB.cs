@@ -738,7 +738,7 @@ namespace BookCDDVDShop
         // If a Product with the given ID is not in a table, the Delete command does nothing
         // Code written by Christopher Tither and Frank Branigan, CIS 3309 Section 1, April 2017
         // Updated by Frank Friedman June 2019
-        public void Delete(int UPC)
+        public void Delete(int UPC, out bool OKFlag)
         {
             using (OleDbConnection connection = new OleDbConnection(strConnection))
             {
@@ -770,6 +770,7 @@ namespace BookCDDVDShop
                     {
                         OleDbDataReader reader = command6.ExecuteReader();
                     }
+                    OKFlag = true;
                     connection.Close();
                 }
                 catch (OleDbException ex)
@@ -777,6 +778,7 @@ namespace BookCDDVDShop
                     MessageBox.Show("There was a Delete Database Entry error: " + ex.Message,
                         "Delete Database Entry Failed", MessageBoxButtons.OK);
                     connection.Close();
+                    OKFlag = false;
                 }
             }  // end using block
             // FormController.clear(this);
