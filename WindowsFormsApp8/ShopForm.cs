@@ -111,7 +111,7 @@ namespace BookCDDVDShop
                     }
                     Book newBook = new Book();
                     newBook.Save(this);
-                    MessageBox.Show("Product Added Successfully!")''
+                    MessageBox.Show("Product Added Successfully!");
 
                     //Adds to the database
                     productDB.InsertProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
