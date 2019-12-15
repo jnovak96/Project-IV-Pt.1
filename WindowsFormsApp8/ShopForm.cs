@@ -458,6 +458,7 @@ namespace BookCDDVDShop
                                     newBook.Display(this);
                                 }
                                 break;
+
                             case ("bookcis"):
                                 {
                                     Book newBook = new Book();
@@ -479,27 +480,59 @@ namespace BookCDDVDShop
                                     }
                                 }
                                 break;
+
                             case ("dvd"):
-                                FormController.deactivateAllButDVD(this);
+                                DVD newDVD = new DVD();
                                 FormController.deactivateAllButDVD(this);
                                 OleDbDataReader dbDVD = productDB.SelectDVD(UPCParsed, out OKFlag);
-                                DVD newDVD = new DVD();
                                 while (dbDVD.Read())
                                 {
                                     newDVD = new DVD(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity, dbDVD[2].ToString(), dbDVD[1].ToString(), Convert.ToInt32(dbDVD[3]));  
                                 }
                                 newDVD.Display(this);
                                 break;
+                           
                             case ("cdorchestra"):
+                                CDClassical newCDClassical = new CDClassical();
                                 FormController.deactivateAllButCDOrchestra(this);
+                                OleDbDataReader dbCDClassical = productDB.SelectCDClassical(UPCParsed, OKFlag);
+                                while (dbCDClassical.Read())
+                                {
+                                    newCDClassical = new CDClassical(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
+                                        dbCDClassical[1].ToString(), dbCDClassical[2].ToString());
+                                }
 
+                                OleDbDataReader dbCDOrchestra = productDB.SelectCDOrchestra(UPCParsed, out OKFlag);
+                                CDOrchestral newCDOrchestra = new CDOrchestral();
+                                while (dbCDOrchestra.Read())
+                                {
+                                   newCDOrchestra = new CDOrchestral(tmp.ProductUPC, tmp.ProductUPC, tmp.ProductTitle, 
+                                       newCDClassical.CDClassicalLabel, newCDClassical.CDClassicalArtists, dbCDOrchestra[1].ToString());
+                                }
+                                newCDOrchestra.Display(this);
                                 break;
+
                             case ("cdchamber"):
-                                FormController.deactivateAllButCDChamber(this);
+                                CDClassical newCDClassical = new CDClassical();
+                                FormController.deactivateAllButCDOrchestra(this);
+                                OleDbDataReader dbCDClassical = productDB.SelectCDClassical(UPCParsed, OKFlag);
+                                while (dbCDClassical.Read())
+                                {
+                                    newCDClassical = new CDClassical(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
+                                        dbCDClassical[1].ToString(), dbCDClassical[2].ToString());
+                                }
+
+                                OleDbDataReader dbCDChamber = productDB.SelectCDChamber(UPCParsed, out OKFlag);
+                                CDChamber newCDChamber = new CDChamber();
+                                while (dbCDChamber.Read())
+                                {
+                                   newCDChamber = new CDOrchestral(tmp.ProductUPC, tmp.ProductUPC, tmp.ProductTitle, 
+                                       newCDClassical.CDClassicalLabel, newCDClassical.CDClassicalArtists, dbCDChamber[1].ToString());
+                                }
+                                newCDChamber.Display(this);
                                 break;
                         }
-
-
+                        
                     }
                     break;
 
