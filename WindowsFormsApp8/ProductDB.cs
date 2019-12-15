@@ -601,8 +601,9 @@ namespace BookCDDVDShop
         // Updates a record in the DVD table with parameters UPC and Lead Actor, Release Date and Run Time
         public bool UpdateDVD(int UPC, string lead, DateTime relDate, int runTime)
         {
+
             string strUpdateDVD = "UPDATE DVD SET "
-                + "fldLeadActor='" + lead +"'" + ", fldReleaseDate=" + "'"+ relDate +"'" + ", fldRunTime=" + runTime +
+                + "fldLeadActor='" + lead +"'" + ", fldReleaseDate=" + "'"+ relDate.Date +"'" + ", fldRunTime=" + runTime +
                 " WHERE fldUPC=" + UPC + ";";
 
             OleDbConnection myConnection = new OleDbConnection(strConnection);
