@@ -443,11 +443,18 @@ namespace BookCDDVDShop
                                 case ("book"):
                                     //Create a Book Object and call the display 
                                     FormController.deactivateAllButBook(this);
-                                    productDB.
-                                    Book newBook = new Book();
+                                    OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                    Book newBook = new Book(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
+                                        Convert.ToInt32(dbBook[1]), dbBook[2], Convert.ToInt32(dbBook[3]));
+                                    newBook.Display(this);
                                     break;
                                 case ("bookcis"):
                                     FormController.deactivateAllButBookCIS(this);
+                                    OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
+                                    OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
+                                    BookCIS newBookCIS = new BookCIS(Convert.ToInt32(dbResult[0]), Convert.ToDecimal(dbResult[1]), dbResult[2].ToString(), Convert.ToInt32(dbResult[3]), 
+                                        Convert.ToInt32(dbBook[1]), dbBook[2], Convert.ToInt32(dbBook[3]), dbBookCIS[1]);
+                                    newBookCIS.Display(this);
                                     break;
                                 case ("dvd"):
                                     FormController.deactivateAllButDVD(this);

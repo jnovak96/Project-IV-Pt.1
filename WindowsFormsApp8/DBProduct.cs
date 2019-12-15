@@ -28,7 +28,6 @@ namespace BookCDDVDShop
         public override void Save(frmBookCDDVDShop f)
         {
             base.Save(f);
-          
         } // end Save
 
 
@@ -36,7 +35,6 @@ namespace BookCDDVDShop
         public override void Display(frmBookCDDVDShop f)
         {
             base.Display(f);
-      
         }  // end Display
 
 
