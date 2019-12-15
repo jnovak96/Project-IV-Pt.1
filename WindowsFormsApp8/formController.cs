@@ -29,7 +29,7 @@ namespace BookCDDVDShop
             f.btnFind.Enabled = true;
             f.btnExit.Enabled = true;
             f.btnUpdateProduct.Enabled = false;
-            f.btnSaveProduct.Enabled = true;
+            f.btnSaveProduct.Enabled = false;
             f.btnEnterUPC.Enabled = true;
             f.btnCreateBook.Enabled = true;
             f.btnCreateBook.Text = "Create Book";
@@ -195,6 +195,7 @@ namespace BookCDDVDShop
             f.txtProductQuantity.Enabled = true;
             f.txtProductPrice.Enabled = true;
             f.btnEnterUPC.Enabled = false;
+            f.btnSaveProduct.Enabled = true;
 
         }  // end activateProduct
 
