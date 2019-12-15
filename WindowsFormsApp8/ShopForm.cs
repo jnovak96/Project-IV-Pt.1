@@ -408,16 +408,16 @@ namespace BookCDDVDShop
                     //find mode
                     bool OKFlag = false;
                     OleDbDataReader dbResult = productDB.SelectProduct(UPCParsed, out OKFlag);
-                    if (!dbResult)
-                        {
-                            MessageBox.Show("Error, could not be found");
-                        }
+                   
                     while (dbResult.Read())
                     {
                         MessageBox.Show("UPC : " + dbResult[0] + " , " + "Price : " + dbResult[1] + ", " + "Title : " + dbResult[2] + ", " + "Quantity : " + dbResult[3]);
                     }
+                    if (!OKFlag)
+                    {
+                        MessageBox.Show("Error, could not be found!");
+                    }
 
-                    
                     //pList.displayProduct(UPCParsed).Display(this);
                     break;
                 case 2:
@@ -427,7 +427,7 @@ namespace BookCDDVDShop
                     if (OKFlag)
                     {
 
-                        MessageBox.Show("No Entries Exist with that UPC!");
+                        MessageBox.Show("Error, UPC Does not Exist!");
                     }
                    // pList.removeProduct(UPCParsed);
                     break;
@@ -561,6 +561,10 @@ namespace BookCDDVDShop
                         }
                         
                     }
+                    if(!OKFlag)
+                        {
+                            MessageBox.Show("Error, UPC Does not Exist!");
+                        }
                     break;
 
             }
