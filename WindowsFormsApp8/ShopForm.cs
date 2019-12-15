@@ -11,6 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
+/**
+ * Form that controls the Addition / Edit / Delete Events
+ * 
+ * Produced by: John Novak & Anthony Zayas
+ */
+
+
 namespace BookCDDVDShop
 {
     public partial class frmBookCDDVDShop : Form
@@ -470,6 +477,8 @@ namespace BookCDDVDShop
                                 //Create a Book Object and call the display 
                                 {
                                     FormController.deactivateAllButBook(this);
+
+                                    //Calls DB to get PRoduct
                                     OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
                                     FormController.enableUpdateProduct(this);
                                     Book newBook = new Book();
@@ -488,13 +497,15 @@ namespace BookCDDVDShop
                                     Book newBook = new Book();
                                     FormController.deactivateAllButBookCIS(this);
                                     FormController.enableUpdateProduct(this);
+
+                                    //Calls DB to get Book
                                     OleDbDataReader dbBook = productDB.SelectBook(UPCParsed, out OKFlag);
                                     while (dbBook.Read())
                                     {
                                         newBook = new Book(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
                                             Convert.ToInt32(dbBook[1]), dbBook[2].ToString(), Convert.ToInt32(dbBook[3]));
                                     }
-
+                                    //Calls DB to get CISBook
                                     OleDbDataReader dbBookCIS = productDB.SelectBookCIS(UPCParsed, out OKFlag);
                                     BookCIS newBookCIS = new BookCIS();
                                     while (dbBookCIS.Read())
@@ -511,6 +522,8 @@ namespace BookCDDVDShop
                                 DVD newDVD = new DVD();
                                 FormController.deactivateAllButDVD(this);
                                 FormController.enableUpdateProduct(this);
+
+                                //Calls DB to get DVD
                                 OleDbDataReader dbDVD = productDB.SelectDVD(UPCParsed, out OKFlag);
                                 while (dbDVD.Read())
                                 {
@@ -525,13 +538,15 @@ namespace BookCDDVDShop
                                     CDClassical newCDClassical = new CDClassical();
                                     FormController.deactivateAllButCDOrchestra(this);
                                     FormController.enableUpdateProduct(this);
+
+                                    //Calls DB to get CDClassical entry
                                     OleDbDataReader dbCDClassical = productDB.SelectCDClassical(UPCParsed,out OKFlag);
                                     while (dbCDClassical.Read())
                                     {
                                         newCDClassical = new CDClassical(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, tmp.ProductQuantity,
                                             dbCDClassical[1].ToString(), dbCDClassical[2].ToString());
                                     }
-
+                                    //Calls DB to get CDOrchestra entry
                                     OleDbDataReader dbCDOrchestra = productDB.SelectCDOrchestra(UPCParsed, out OKFlag);
                                     CDOrchestral newCDOrchestra = new CDOrchestral();
                                     while (dbCDOrchestra.Read())
@@ -549,6 +564,8 @@ namespace BookCDDVDShop
                                     CDClassical newCDClassical = new CDClassical();
                                     FormController.deactivateAllButCDChamber(this);
                                     FormController.enableUpdateProduct(this);
+
+                                    //Calls DB to get CDClassical Entry
                                     OleDbDataReader dbCDClassical = productDB.SelectCDClassical(UPCParsed, out OKFlag);
                                     while (dbCDClassical.Read())
                                     {
@@ -556,6 +573,7 @@ namespace BookCDDVDShop
                                             dbCDClassical[1].ToString(), dbCDClassical[2].ToString());
                                     }
 
+                                    //Calls DB to get CDChamer Entry
                                     OleDbDataReader dbCDChamber = productDB.SelectCDChamber(UPCParsed, out OKFlag);
                                     CDChamber newCDChamber = new CDChamber();
                                     while (dbCDChamber.Read())
@@ -613,6 +631,7 @@ namespace BookCDDVDShop
           
         }
 
+        //Updates Information in the database based off the type of Product 
         private void btnUpdateProduct_Click(object sender, EventArgs e)
         {
             bool OKFlag = true;

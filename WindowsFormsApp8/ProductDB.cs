@@ -1,21 +1,20 @@
 ﻿/*
 * Product Database Class BEST TO DATE
-* Authors: Nick Filauro & Erika Gepilano
-* April 2016 * Version 1
+* Authors: Anthony Zayas
 * 
 * Updated 11/18/2016 * Version 2 * Elliot Stoner
 * Updated 06/17/2017 * Version 3 * Frank Friedman
 * Updated 06/30/2018 * Version 4 * Frank Friedman
 * Updated 06/20/2019 * Version 5 * Frank Friedman
 * Updated 12/02/2019 * Version 6 * Frank Friedman  BEST VERSION TO DATE
+* Updated 12/14/2019 *Version 7 * Anthony Zayas BETTER VERSION
 * 
 * Purpose: A class that interacts and performs database operations for Product
 * in a Microsoft Access database using an OLEDB Data Reader.
 * It will contain methods for CRUD (Create, Read, Update, Delete) operations.
 * 
-* !! Requirements !!
-* You must have the Access Database Engine installed on the system you are running the program on.
-* https://www.microsoft.com/en-us/download/details.aspx?id=13255
+Some of these methods were taken from the provided document but most were created by myself
+*
 * 
 * No constructors were written
 */
