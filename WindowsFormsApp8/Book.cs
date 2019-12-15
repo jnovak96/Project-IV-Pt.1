@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//test
+
+
+/*
+ * This is the Book Class
+ * used to store information about Book 
+ * Objects
+ * */
 namespace BookCDDVDShop
 {
     [Serializable()]

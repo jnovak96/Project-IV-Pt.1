@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//test
+/*
+ * This class is the a DBPRoduct object
+ * used for stroing information about Products 
+ * obtained from the DB
+ * */
 namespace BookCDDVDShop
 {
     [Serializable()]

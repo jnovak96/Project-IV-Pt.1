@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * This is the CDClassical Class
+ * used to store information about CDClassical 
+ * Objects
+ * */
 namespace BookCDDVDShop
 {
     [Serializable()]

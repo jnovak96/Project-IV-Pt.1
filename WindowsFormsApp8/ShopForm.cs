@@ -22,11 +22,15 @@ namespace BookCDDVDShop
 {
     public partial class frmBookCDDVDShop : Form
     {
+        //Global Attributes
         private int updateState;
         private int addState;
         private int mode;
         ProductList pList;
         ProductDB productDB;
+        Validations newVal;
+
+        //Constructor for form
         public frmBookCDDVDShop()
         {
                InitializeComponent();
@@ -40,6 +44,7 @@ namespace BookCDDVDShop
             pList = new ProductList();
             productDB = new ProductDB();
             FormController.resetForm(this);
+            newVal = new Validations(this);
             //Check if the serializable file exists
            // if (File.Exists("BookCDDVDShopData"))
            // {
@@ -111,7 +116,7 @@ namespace BookCDDVDShop
                 case 0:
                     //Case is in: add a Book
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.ookTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.BookTextCheck())
                     {
                         MessageBox.Show("One of the fields was not entered in a usable form. Please try again!");
                         break;
@@ -128,7 +133,7 @@ namespace BookCDDVDShop
                 case 1:
                     //Case is in: add a CIS Book
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.bookCISTextCheck() || !newVal.bookTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.BookCISTextCheck() || !newVal.BookTextCheck())
                     {
                         break;
                     }
@@ -146,7 +151,7 @@ namespace BookCDDVDShop
                 case 2:
                     //Case is in: add a DVD
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.DVDTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.DVDTextCheck())
                     {
                         break;
                     }
@@ -162,7 +167,7 @@ namespace BookCDDVDShop
                     break;
                 case 3:
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.CDClassicalTextCheck() || !newVal.CDOrchestralTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.CDClassicalTextCheck() || !newVal.CDOrchestralTextCheck())
                     {
                         break;
                     }
@@ -182,7 +187,7 @@ namespace BookCDDVDShop
                 case 4:
                     //Case is in: add a CD Chamber
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck()|| !newVal.CDClassicalTextCheck() || !newVal.CDChamberTextCheck())
+                    if (!newVal.ProductTextCheck()|| !newVal.CDClassicalTextCheck() || !newVal.CDChamberTextCheck())
                     {
                         break;
                     }
@@ -199,157 +204,8 @@ namespace BookCDDVDShop
                     break;
             }
         }
-        private bool productTextCheck()
-        {
-            int UPCParsed, quantityParsed;
-            decimal priceParsed;
-            //Check for blank text
-            if (txtProductUPC.Text == "" || txtProductPrice.Text == "" || txtProductTitle.Text == "" || txtProductQuantity.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //check for int parsing
-            else if (!int.TryParse(txtProductUPC.Text, out UPCParsed) || !int.TryParse(txtProductQuantity.Text, out quantityParsed))
-            {
-                MessageBox.Show("Error! UPC field must contain a valid integer value");
-                return false;
-            }            //check for negative values
-            else if (UPCParsed < 0 || quantityParsed < 0)
-            {
-                MessageBox.Show("Error! UPC field must contain a non-negative integer value or quantity must not be negative");
-                return false;
-            }
-            //Regex to check for a dollar decimal value (cents optional) -Source: RegexBuddy.com
-            //check if dollar value is a valid decimal in case regex fails
-            else if (!Decimal.TryParse(txtProductPrice.Text, out priceParsed))
-                return false;
-            //check if dollar value is a negative value
-            else if (priceParsed < 0)
-            {
-                MessageBox.Show("Error! Product Price cannot be negative");
-                return false;
-            }
-            return true;
-        }
-
-        //VALIDATION CHECKS FOR ALL CATEGORIES
-
-        //Check for Book
-        private bool bookTextCheck()
-        {
-            int ISBNLeftParsed, ISBNRightParsed, PageParsed;
-            //check for blank text
-            if (txtBookAuthor.Text == "" || txtBookISBNLeft.Text == "" || txtBookISBNRight.Text == "" || txtBookPages.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //Check for int values
-            else if (!int.TryParse(txtBookISBNLeft.Text, out ISBNLeftParsed) || !int.TryParse(txtBookISBNRight.Text, out ISBNRightParsed) || !int.TryParse(txtBookPages.Text, out PageParsed))
-            {
-                MessageBox.Show("Error! Please enter valid numeric values for ISBN and page count");
-                return false;
-            }
-            //Check for numeric accuracy (negatives, proper number of digits)
-            else if (PageParsed < 1 || ISBNLeftParsed.ToString().Length != 4 || ISBNRightParsed.ToString().Length != 4) 
-            {
-                MessageBox.Show("Error! Please do not use negative numbers for page count, and use 4-digit numbers for each part of ISBN");
-                return false;
-            }
-            return true;
-        }
-
-
-        
-        //Check for book CIS
-        private bool bookCISTextCheck()
-        {
-            if (txtBookCISArea.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //Regex to disallow special characters of any kind
-            else if (!Regex.IsMatch(txtBookCISArea.Text, "[a-z ]+", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("Error! Please do not use special characters in CIS Book Area field");
-                return false;
-            }
-            return true;
-        }
-
-        //Check for CD Classical
-        private bool CDClassicalTextCheck()
-        {
-            if (txtCDClassicalArtists.Text == "" || txtCDClassicalLabel.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //Regex to allow only capital and lowercase letters and hyphens for people's names
-            else if (!Regex.IsMatch(txtCDClassicalArtists.Text, "[a-z- ]+", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("Error! Name fields can only contain letters and hyphens");
-                return false;
-            }
-            return true;
-        }
-
-        //Check for CD Orchestral
-        private bool CDOrchestralTextCheck()
-        {
-            if (txtCDOrchestraConductor.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //Regex to allow only capital and lowercase letters and hyphens for people's names
-            else if (!Regex.IsMatch(txtCDOrchestraConductor.Text, "[a-z- ]+", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("Error! Name fields can only contain letters and hyphens");
-                return false;
-            }
-            return true;
-        }
-
-        //Check for CD Chamber
-        private bool CDChamberTextCheck()
-        {
-            //Check for blank instrument list
-            if (txtCDChamberInstrumentList.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //Regex to allow for only words seperated by commas, ignoring case
-            else if (!Regex.IsMatch(txtCDChamberInstrumentList.Text, "[a-z, ]+", RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("Error! CD Chamber Instrument list must not include special characters or numbers and each instrument can only be seperated by a comma");
-                return false;
-            }
-            return true;
-        }
-
-        //Check for DVD
-        private bool DVDTextCheck()
-        {
-            if (txtDVDLeadActor.Text == "" || txtDVDReleaseDate.Text == "" || txtDVDRunTime.Text == "")
-            {
-                MessageBox.Show("Error! Necessary text boxes cannot be blank");
-                return false;
-            }
-            //Regex to allow only capital and lowercase letters and hyphens for people's names
-            else if (!Regex.IsMatch(txtDVDLeadActor.Text, "[a-z- ]+", RegexOptions.IgnoreCase))
-                return false;
-            //regex that checks for date in mm/dd/yyyy format
-            else if (!Regex.IsMatch(txtDVDReleaseDate.Text, @"^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$"))
-            {
-                MessageBox.Show("Error! DVD Release Date must be in format mm/dd/yyyy");
-                return false;
-            }
-            return true;
-        }
+  
+ 
 
         //Enables find mode
         private void btnFind_Click(object sender, EventArgs e)
@@ -636,14 +492,13 @@ namespace BookCDDVDShop
         //Updates Information in the database based off the type of Product 
         private void btnUpdateProduct_Click(object sender, EventArgs e)
         {
-            Validation newVal = Validation(this);
             bool OKFlag = true;
             switch(updateState)
             {
                 case 0:
                     //Case is in: add a Book
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.bookTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.BookTextCheck())
                     {
                         MessageBox.Show("One of the fields was not entered in a usable form. Please try again!");
                         break;
@@ -661,7 +516,7 @@ namespace BookCDDVDShop
                 case 1:
                     //Case is in: add a CIS Book
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.bookCISTextCheck() || !newVal.bookTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.BookCISTextCheck() || !newVal.BookTextCheck())
                     {
                         break;
                     }
@@ -678,7 +533,7 @@ namespace BookCDDVDShop
                 case 2:
                     //Case is in: add a DVD
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.DVDTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.DVDTextCheck())
                     {
                         break;
                     }
@@ -693,7 +548,7 @@ namespace BookCDDVDShop
                     break;
                 case 3:
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck() || !newVal.CDClassicalTextCheck() || !newVal.CDOrchestralTextCheck())
+                    if (!newVal.ProductTextCheck() || !newVal.CDClassicalTextCheck() || !newVal.CDOrchestralTextCheck())
                     {
                         break;
                     }
@@ -712,7 +567,7 @@ namespace BookCDDVDShop
                 case 4:
                     //Case is in: add a CD Chamber
                     //Run checks and break on failure
-                    if (!newVal.productTextCheck()|| !newVal.CDClassicalTextCheck() || !newVal.CDChamberTextCheck())
+                    if (!newVal.ProductTextCheck()|| !newVal.CDClassicalTextCheck() || !newVal.CDChamberTextCheck())
                     {
                         break;
                     }

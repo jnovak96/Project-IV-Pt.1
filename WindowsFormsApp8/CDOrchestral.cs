@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * This class is the CDOrchestral object
+ * used for stroing information about CDOrchestral
+ * */
 namespace BookCDDVDShop
 {
     [Serializable()]

@@ -5,6 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/**
+ * This Class is in charge of resetting the Enable
+ * of Labels / Buttons / and TextBoxes
+ * within the Form object
+ * */
+
 namespace BookCDDVDShop
 {
     class FormController

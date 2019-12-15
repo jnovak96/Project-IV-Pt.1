@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * This class is the DVD object
+ * used for stroing information about DVD
+ * */
+
 namespace BookCDDVDShop
 {
     class DVD : Product

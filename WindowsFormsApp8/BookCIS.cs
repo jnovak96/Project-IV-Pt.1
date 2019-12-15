@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * This is the BookCIS Class
+ * used to store information about BookCIS 
+ * Objects
+ * */
 namespace BookCDDVDShop
 {
     [Serializable()]
