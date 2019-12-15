@@ -591,6 +591,7 @@ namespace BookCDDVDShop
 
         private void btnUpdateProduct_Click(object sender, EventArgs e)
         {
+            bool OKFlag = true;
             switch(updateState)
             {
                 case 0:
@@ -606,7 +607,7 @@ namespace BookCDDVDShop
                     MessageBox.Show(newBook.ToString());
 
                     //Adds to the database
-                    productDB.UpdateProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
+                    productDB.UpdateProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name, out OKFlag);
                     productDB.UpdateBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
 
                     //pList.addProduct(newBook);
@@ -622,7 +623,7 @@ namespace BookCDDVDShop
                     newBookCIS.Save(this);
 
                     //Inserts a new CISBook into the database
-                    productDB.UpdateProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name);
+                    productDB.UpdateProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name, out OKFlag);
                     productDB.UpdateBook(newBookCIS.ProductUPC, newBookCIS.BookISBN, newBookCIS.BookAuthor, newBookCIS.BookPages);
                     productDB.UpdateBookCIS(newBookCIS.ProductUPC, newBookCIS.BookCISArea);
                     //pList.addProduct(newBookCIS);
@@ -638,7 +639,7 @@ namespace BookCDDVDShop
                     newDVD.Save(this);
 
                     //Inserts a new DVD and Product information into Database
-                    productDB.UpdateProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name);
+                    productDB.UpdateProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name, out OKFlag);
                     productDB.UpdateDVD(newDVD.ProductUPC, newDVD.DVDActor, Convert.ToDateTime(newDVD.DVDReleaseDate), newDVD.DVDRunTime);
                     //pList.addProduct(newDVD);
                     break;
@@ -653,6 +654,7 @@ namespace BookCDDVDShop
                     newCDOrchestral.Save(this);
 
                     //Inserts a new classical and orcenstral entry into database
+                    productDB.UpdateProduct(newCDOrchestral.ProductUPC, newCDOrchestral.ProductPrice, newCDOrchestral.ProductTitle, newCDOrchestral.ProductQuantity, out OKFlag);
                     productDB.InsertCDClassical(newCDOrchestral.ProductUPC, newCDOrchestral.CDClassicalLabel, newCDOrchestral.CDClassicalArtists);
                     productDB.InsertCDOrchestra(newCDOrchestral.ProductUPC, newCDOrchestral.CDOrchestralConductor);
 
@@ -669,6 +671,7 @@ namespace BookCDDVDShop
                     newCDChamber.Save(this);
 
                     //Inserts a new classical and chamber entry into database
+                    productDB.UpdateProduct(newCDChamber.ProductUPC, newCDChamber.ProductPrice, newCDChamber.ProductTitle, newCDChamber.ProductQuantity, out OKFlag);
                     productDB.InsertCDClassical(newCDChamber.ProductUPC, newCDChamber.CDClassicalLabel, newCDChamber.CDClassicalArtists);
                     productDB.InsertCDChamber(newCDChamber.ProductUPC, newCDChamber.CDChamberInstruments);
                     //pList.addProduct(newCDChamber);
