@@ -144,6 +144,7 @@ namespace BookCDDVDShop
         }  // end InsertBookCIS
 
 
+
         // 4 Inserts a new record into DVD table with parameters UPC and Lead Actor, Release Date and Run Time
         public bool InsertDVD(int UPC, string lead, DateTime relDate, int runTime)
         {
@@ -298,6 +299,65 @@ namespace BookCDDVDShop
 
             return myDataReader;
         }  // end SelectProduct
+
+        //Returns the result from the Book table that matches the UPC
+        public OleDbDataReader SelectBook(int BookUPC, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectBook = "SELECT * FROM Book WHERE book.fldUPC= " + BookUPC;
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectBook, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select Product error: " + ex.Message,
+                     "Product Select Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }  // end SelectBook
+
+
+        //Returns the result from the BookCIS table that matches the UPC
+        public OleDbDataReader SelectBookCIS(int UPC, out bool OKFlag)
+        {
+            // CURRENTLY NOT USED
+            string strSelectBookCIS = "SELECT * FROM BookCIS WHERE BookCIS.fldUPC= " + UPC;
+
+            OleDbConnection myConnection = new OleDbConnection(strConnection);
+            OleDbCommand myCommand = new OleDbCommand(strSelectBookCIS, myConnection);
+            OleDbDataReader myDataReader;
+
+            try
+            {
+                myConnection.Open();
+                myDataReader = myCommand.ExecuteReader();
+                if (myDataReader.HasRows == false) OKFlag = false;
+                else OKFlag = true; // returns true if Select was successful
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show("There was an Select Product error: " + ex.Message,
+                     "Product Select Failed", MessageBoxButtons.OK);
+                myConnection.Close();
+                OKFlag = false; // returns false if Select was unsuccessful
+                myDataReader = null;
+            }
+
+            return myDataReader;
+        }  // end SelectBook
 
         public OleDbDataReader SelectAllProduct( out bool OKFlag)
         {
