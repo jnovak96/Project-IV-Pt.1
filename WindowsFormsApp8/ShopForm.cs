@@ -609,7 +609,7 @@ namespace BookCDDVDShop
                     //Adds to the database
                     productDB.UpdateProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name, out OKFlag);
                     productDB.UpdateBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
-
+                    MessageBox.Show("The update was successful!");
                     //pList.addProduct(newBook);
                     break;
                 case 1:
@@ -626,6 +626,7 @@ namespace BookCDDVDShop
                     productDB.UpdateProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name, out OKFlag);
                     productDB.UpdateBook(newBookCIS.ProductUPC, newBookCIS.BookISBN, newBookCIS.BookAuthor, newBookCIS.BookPages);
                     productDB.UpdateBookCIS(newBookCIS.ProductUPC, newBookCIS.BookCISArea);
+                    MessageBox.Show("The update was successful!");
                     //pList.addProduct(newBookCIS);
                     break;
                 case 2:
@@ -641,6 +642,7 @@ namespace BookCDDVDShop
                     //Inserts a new DVD and Product information into Database
                     productDB.UpdateProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name, out OKFlag);
                     productDB.UpdateDVD(newDVD.ProductUPC, newDVD.DVDActor, Convert.ToDateTime(newDVD.DVDReleaseDate), newDVD.DVDRunTime);
+                    MessageBox.Show("The update was successful!");
                     //pList.addProduct(newDVD);
                     break;
                 case 3:
@@ -658,6 +660,7 @@ namespace BookCDDVDShop
                     productDB.UpdateCDClassical(newCDOrchestral.ProductUPC, newCDOrchestral.CDClassicalLabel, newCDOrchestral.CDClassicalArtists);
                     productDB.UpdateCDOrchestra(newCDOrchestral.ProductUPC, newCDOrchestral.CDOrchestralConductor);
 
+                    MessageBox.Show("The update was successful!");
                     //pList.addProduct(newCDOrchestral);
                     break;
                 case 4:
@@ -673,7 +676,8 @@ namespace BookCDDVDShop
                     //Inserts a new classical and chamber entry into database
                     productDB.UpdateProduct(newCDChamber.ProductUPC, newCDChamber.ProductPrice, newCDChamber.ProductTitle, newCDChamber.ProductQuantity, newCDChamber.GetType().Name, out OKFlag);
                     productDB.UpdateCDClassical(newCDChamber.ProductUPC, newCDChamber.CDClassicalLabel, newCDChamber.CDClassicalArtists);
-                    productDB.UpdateCDChamber(newCDChamber.ProductUPC, newCDChamber.CDChamberInstruments);
+                    productDB.UpdateCDChamber(newCDChamber.ProductUPC, newCDChamber.CDChamberInstruments);                    
+                    MessageBox.Show("The update was successful!");
                     //pList.addProduct(newCDChamber);
                     break;
             }
