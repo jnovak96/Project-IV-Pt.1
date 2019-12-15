@@ -506,7 +506,7 @@ namespace BookCDDVDShop
                                 CDOrchestral newCDOrchestra = new CDOrchestral();
                                 while (dbCDOrchestra.Read())
                                 {
-                                   newCDOrchestra = new CDOrchestral(tmp.ProductUPC, tmp.ProductUPC, tmp.ProductTitle, 
+                                   newCDOrchestra = new CDOrchestral(tmp.ProductUPC, tmp.ProductPrice, tmp.ProductTitle, 
                                        newCDClassical.CDClassicalLabel, newCDClassical.CDClassicalArtists, dbCDOrchestra[1].ToString());
                                 }
                                 newCDOrchestra.Display(this);
@@ -526,7 +526,7 @@ namespace BookCDDVDShop
                                 CDChamber newCDChamber = new CDChamber();
                                 while (dbCDChamber.Read())
                                 {
-                                   newCDChamber = new CDOrchestral(tmp.ProductUPC, tmp.ProductUPC, tmp.ProductTitle, 
+                                   newCDChamber = new CDOrchestral(newCDClassical.ProductUPC, newCDClassical.ProductPrice, newCDClassical.ProductTitle, 
                                        newCDClassical.CDClassicalLabel, newCDClassical.CDClassicalArtists, dbCDChamber[1].ToString());
                                 }
                                 newCDChamber.Display(this);
