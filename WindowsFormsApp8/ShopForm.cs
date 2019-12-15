@@ -408,10 +408,16 @@ namespace BookCDDVDShop
                     //find mode
                     bool OKFlag = false;
                     OleDbDataReader dbResult = productDB.SelectProduct(UPCParsed, out OKFlag);
+                    if (!dbResult)
+                        {
+                            MessageBox.Show("Error, could not be found");
+                        }
                     while (dbResult.Read())
                     {
                         MessageBox.Show("UPC : " + dbResult[0] + " , " + "Price : " + dbResult[1] + ", " + "Title : " + dbResult[2] + ", " + "Quantity : " + dbResult[3]);
                     }
+
+                    
                     //pList.displayProduct(UPCParsed).Display(this);
                     break;
                 case 2:
