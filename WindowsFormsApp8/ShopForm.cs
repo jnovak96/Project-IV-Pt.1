@@ -420,8 +420,6 @@ namespace BookCDDVDShop
                     break;
                 case 3:
                     //edit mode
-
-
                     OKFlag = false;
                  
                     //dbResult contains the result from the SQL query to database
@@ -443,8 +441,10 @@ namespace BookCDDVDShop
                             switch (typeOfProduct.ToLower())
                             {
                                 case ("book"):
-                                    //Create a Book Object and call the display method
+                                    //Create a Book Object and call the display 
                                     FormController.deactivateAllButBook(this);
+                                    productDB.
+                                    Book newBook = new Book();
                                     break;
                                 case ("bookcis"):
                                     FormController.deactivateAllButBookCIS(this);
@@ -458,8 +458,6 @@ namespace BookCDDVDShop
                                 case ("cdchamber"):
                                     FormController.deactivateAllButCDChamber(this);
                                     break;
-                                
-"
                             }
 
 

@@ -20,7 +20,7 @@ namespace BookCDDVDShop
         //parameterized constructor
         public DBProduct(int UPC, decimal price, string title, int quantity) : base(UPC, price, title, quantity)
         {
-           
+            
         }
 
    
@@ -36,7 +36,7 @@ namespace BookCDDVDShop
         public override void Display(frmBookCDDVDShop f)
         {
             base.Display(f);
-         
+      
         }  // end Display
 
 

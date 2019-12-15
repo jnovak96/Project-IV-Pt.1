@@ -269,8 +269,6 @@ namespace BookCDDVDShop
         // ********** End of INSERT methods **********t
 
 
-
-
         public OleDbDataReader SelectProduct(int ProductUPC, out bool OKFlag)
         {
             // CURRENTLY NOT USED
