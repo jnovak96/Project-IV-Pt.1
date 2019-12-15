@@ -581,5 +581,10 @@ namespace BookCDDVDShop
             }
           
         }
+
+        private void btnUpdateProduct_Click(object sender, EventArgs e)
+        {
+
+        }
     }    
 }

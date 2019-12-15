@@ -783,6 +783,7 @@
             this.btnUpdateProduct.TabIndex = 34;
             this.btnUpdateProduct.Text = "Update Product";
             this.btnUpdateProduct.UseVisualStyleBackColor = true;
+            this.btnUpdateProduct.Click += new System.EventHandler(this.btnUpdateProduct_Click);
             // 
             // frmBookCDDVDShop
             // 
