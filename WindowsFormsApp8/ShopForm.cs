@@ -111,12 +111,11 @@ namespace BookCDDVDShop
                     }
                     Book newBook = new Book();
                     newBook.Save(this);
-                    MessageBox.Show(newBook.ToString());
+                    MessageBox.Show("Product Added Successfully!")''
 
                     //Adds to the database
                     productDB.InsertProduct(newBook.ProductUPC, newBook.ProductPrice, newBook.ProductTitle, newBook.ProductQuantity, newBook.GetType().Name);
                     productDB.InsertBook(newBook.ProductUPC, newBook.BookISBN, newBook.BookAuthor, newBook.BookPages);
-
                     //pList.addProduct(newBook);
                     break;
                 case 1:
@@ -128,6 +127,8 @@ namespace BookCDDVDShop
                     }
                     BookCIS newBookCIS = new BookCIS();
                     newBookCIS.Save(this);
+                    MessageBox.Show("Product Added Successfully!");
+
 
                     //Inserts a new CISBook into the database
                     productDB.InsertProduct(newBookCIS.ProductUPC, newBookCIS.ProductPrice, newBookCIS.ProductTitle, newBookCIS.ProductQuantity, newBookCIS.GetType().Name);
@@ -144,6 +145,8 @@ namespace BookCDDVDShop
                     }
                     DVD newDVD = new DVD();
                     newDVD.Save(this);
+                    MessageBox.Show("Product Added Successfully!");
+
 
                     //Inserts a new DVD and Product information into Database
                     productDB.InsertProduct(newDVD.ProductUPC, newDVD.ProductPrice, newDVD.ProductTitle, newDVD.ProductQuantity, newDVD.GetType().Name);
@@ -159,6 +162,8 @@ namespace BookCDDVDShop
                     //Case is in: add a CD orchestra
                     CDOrchestral newCDOrchestral = new CDOrchestral();
                     newCDOrchestral.Save(this);
+                    MessageBox.Show("Product Added Successfully!");
+
 
                     //Inserts a new classical and orcenstral entry into database
                     productDB.InsertProduct(newCDOrchestral.ProductUPC, newCDOrchestral.ProductPrice, newCDOrchestral.ProductTitle, newCDOrchestral.ProductQuantity, newCDOrchestral.GetType().Name);
@@ -176,6 +181,8 @@ namespace BookCDDVDShop
                     }
                     CDChamber newCDChamber = new CDChamber();
                     newCDChamber.Save(this);
+                    MessageBox.Show("Product Added Successfully!");
+
 
                     //Inserts a new classical and chamber entry into database
                     productDB.InsertProduct(newCDChamber.ProductUPC, newCDChamber.ProductPrice, newCDChamber.ProductTitle, newCDChamber.ProductQuantity, newCDChamber.GetType().Name);
