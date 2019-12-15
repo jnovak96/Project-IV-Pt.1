@@ -18,9 +18,9 @@ namespace BookCDDVDShop
         }
 
         public CDChamber(int UPC, decimal price, string title, int quantity,
-            string label, string artists, string conductor) : base(UPC, price, title, quantity, label, artists)
+            string label, string artists, string conductor, string instruments) : base(UPC, price, title, quantity, label, artists)
         {
-            hiddenInstruments = "";
+            hiddenInstruments = instruments;
         }
 
         public string CDChamberInstruments

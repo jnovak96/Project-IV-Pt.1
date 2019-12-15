@@ -20,7 +20,7 @@ namespace BookCDDVDShop
         public CDOrchestral(int UPC, decimal price, string title, int quantity,
             string label, string artists, string conductor) : base (UPC, price, title, quantity, label, artists)
         {
-            hiddenConductor = "";
+            hiddenConductor = conductor;
         }
 
         public string CDOrchestralConductor
