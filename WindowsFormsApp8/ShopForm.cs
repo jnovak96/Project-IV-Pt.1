@@ -33,11 +33,12 @@ namespace BookCDDVDShop
             mode = 0;
             pList = new ProductList();
             productDB = new ProductDB();
+            FormController.resetForm(this);
             //Check if the serializable file exists
-            if (File.Exists("BookCDDVDShopData"))
-            {
-                SFManager.readFromFile(ref pList, "BookCDDVDShopData");
-            }
+           // if (File.Exists("BookCDDVDShopData"))
+           // {
+            //    SFManager.readFromFile(ref pList, "BookCDDVDShopData");
+           // }
             
         }
         //Create Book bytton
