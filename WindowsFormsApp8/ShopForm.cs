@@ -17,6 +17,7 @@ namespace BookCDDVDShop
     {
         private int addState;
         private int mode;
+        //state used for update
         private int updateState;        
         ProductList pList;
         ProductDB productDB;
