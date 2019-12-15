@@ -142,12 +142,12 @@ namespace BookCDDVDShop
             FormController.deactivateAddButtons(f);
         }  // end deactivateAllButCDOrchestra
 
-
+        // Deactivate all but update product essential buttons
         public static void enableUpdateProduct(frmBookCDDVDShop f)
         {
             f.btnSaveProduct.Enabled = false;
             f.btnUpdateProduct.Enabled = true;
-            f.btnEnterUPC.Enabled = false;
+            f.txtProductUPC.Enabled = false;
         }
 
 
